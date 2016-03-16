@@ -11,7 +11,7 @@ CREATE TABLE Professor (
 matricula int PRIMARY KEY,
 professor varchar(20) not null,
 carga_horaria int not null, 	/* Numero de Aulas que o professor vai ter que ministrar */
-data_contratacao varchar(10) not null,
+data_contratacao date not null,
 codigo_disciplina varchar(10) not null,
 FOREIGN KEY(codigo_disciplina) REFERENCES Disciplina (codigo_disciplina)
 );
@@ -26,15 +26,21 @@ FOREIGN KEY(matricula) REFERENCES Professor (matricula)
 CREATE TABLE Serie (
 serie varchar(10) PRIMARY KEY,
 codigo_disciplina varchar(10) not null,
-aulas_disciplina int not null,		/* Esse campo é onde diz quantas aulas na semana cada disciplina vai ter */
+aulas_disciplina int not null,		/* Quantas aulas na semana cada disciplina vai ter */
 FOREIGN KEY(codigo_disciplina) REFERENCES Disciplina (codigo_disciplina)
+);
+
+CREATE TABLE Turno (
+turno varchar(10) PRIMARY KEY,
+numero_aulas int not null /* Numero de aulas na semana */
 );
 
 CREATE TABLE Turma (
 turma varchar(10) PRIMARY KEY,
-turno varchar(10) not null,
 serie varchar(10) not null,
-FOREIGN KEY(serie) REFERENCES Serie (serie)
+turno varchar(10) not null,
+FOREIGN KEY(serie) REFERENCES Serie (serie),
+FOREIGN KEY(turno) REFERENCES Turno (turno)
 );
 
 CREATE TABLE Horario (
