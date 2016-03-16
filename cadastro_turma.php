@@ -5,7 +5,7 @@
 
   <body>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Cadastro de Turma</h1>
+          <h1 class="page-header">Turma</h1>
 
       	 <form>
       	 
@@ -29,7 +29,8 @@
           </select>
       	 </div>
 
-	         <button type="submit" class="btn btn-info">Cadastrar</button>
+	         <button type="submit" class="btn btn-info">Salvar</button>
+           <button class="btn btn-danger" type="reset">Limpar</button>
 	       </form>
     </div>
   </body>

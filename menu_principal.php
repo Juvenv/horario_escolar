@@ -12,31 +12,31 @@
           <div class="row placeholders">
             
 			<div class="col-xs-6 col-sm-2 placeholder">
-              <img src="imagens/turno.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail">
+              <a href="cadastro_turno.php"><img src="imagens/turno.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
               <h4>Turno</h4>
               <span class="text-muted"> 1º Passo</span>
             </div>
             
       <div class="col-xs-6 col-sm-2 placeholder">
-              <img src="imagens/disciplina.png" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail">
+              <a href="cadastro_disciplina.php"><img src="imagens/disciplina.png" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
               <h4>Disciplina</h4>
               <span class="text-muted"> 2º Passo</span>
             </div>
 
 			<div class="col-xs-6 col-sm-2 placeholder">
-              <img src="imagens/professor.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail">
+              <a href="cadastro_professor.php"><img src="imagens/professor.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
               <h4>Professor</h4>
               <span class="text-muted"> 3º Passo</span>
             </div>
 
       <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="imagens/turma.png" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail">
+              <a href="cadastro_serie.php"><img src="imagens/turma.png" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
               <h4>Série</h4>
               <span class="text-muted"> 4º Passo</span>
             </div>  
             
 			<div class="col-xs-6 col-sm-3 placeholder">
-              <img src="imagens/turma.png" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail">
+              <a href="cadastro_turma.php"><img src="imagens/turma.png" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
               <h4>Turma</h4>
               <span class="text-muted"> 5º Passo</span>
             </div>			
