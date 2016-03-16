@@ -82,30 +82,67 @@
 		<input type="text" class="form-control" id="nome" placeholder="Informe o nome">
 	  </div>
 	  
+	  
 	  <div class="form-group">
-		<label for="exampleInputPassword1">Carga Horária Obrigatória</label>
-		<input type="password" class="form-control" id="carga_horaria_obrigatoria" placeholder="Informe a quantidade de aulas obrigatórias mensal">
+		<label for="exampleInputPassword1">Data de contratação</label>
+		<input class="form-control" id="date1" name="date1" placeholder="DD/MM/YYYY" type="text"/>
 	  </div>
-	
-    
-  
-    
-</div>
+	  
+	  <div class="form-group">
+	   <label for="exampleInputPassword1">Carga Horária Obrigatória</label>
+      
+	  <select class="select form-control" id="select" name="select">
 
-	  <button type="submit" class="btn btn-info">Cadastrar</button>
-	
-	
-	</form>
-       
-               
-        </div>
+	   <option >
+         Selecione 
+        </option>
+	  
+	  <option value="10">
+         10 horas/mensal
+        </option>
+
+        <option value="15">
+         15 horas/mensal       
+	   </option>
+	   
+        <option value="20">
+         20 horas/mensal
+        </option>
+		
+		 <option value="30">
+         30 horas/mensal
+        </option>
+		 
+		 <option value="35">
+         35 horas/mensal
+        </option>
+		
+		 <option value="40">
+         40 horas/mensal
+        </option>
+		
+		 <option value="45">
+         45 horas/mensal
+        </option>
+		
+		 <option value="50">
+         50 horas/mensal
+        </option>
+		
+       </select>
       </div>
 	  
-	  
-	  
-    </div>
-
-    <!-- Bootstrap core JavaScript
+	  <button class="btn btn-info" name="submit" type="submit"> cadastrar </button>
+     </div>   
+    
+    
+</div>
+</div>
+</div>
+</form>
+	
+	
+   <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
