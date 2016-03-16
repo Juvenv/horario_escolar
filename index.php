@@ -35,7 +35,7 @@
           <div class="inner cover">
             <h1 class="cover-heading">SISTEMA GERADOR DE HORÁRIO ESCOLAR - SGHE</h1>
             
-              <a href="professor.php" class="btn btn-lg btn-default">Entrar</a>
+              <a href="menu_principal.php" class="btn btn-lg btn-default">Entrar</a>
             
 			</p>
           </div>
