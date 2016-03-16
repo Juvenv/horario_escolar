@@ -22,43 +22,8 @@
         	  
         	  <div class="form-group">
         		<label for="exampleInputPassword2">Carga Horária Obrigatória</label>
-        		<input type="number" class="form-control" id="carga_horaria_obrigatoria" placeholder="Informe a quantidade de aulas obrigatórias mensal">
-        	  </div> 
-
-        	  <div class="form-group">
-	   			<label for="exampleInputPassword1">Carga Horária Obrigatória</label>
-      
-	  			<select class="select form-control" id="select" name="select">
-
-			   <option >
-		         Selecione 
-		        </option>
-			  <option value="10">
-		         10 horas/mensal
-		        </option>
-		        <option value="15">
-		         15 horas/mensal       
-			   </option>
-		        <option value="20">
-		         20 horas/mensal
-		        </option>
-				 <option value="30">
-		         30 horas/mensal
-		        </option>
-				 <option value="35">
-		         35 horas/mensal
-		        </option>
-				 <option value="40">
-		         40 horas/mensal
-		        </option>
-				 <option value="45">
-		         45 horas/mensal
-		        </option>
-				 <option value="50">
-		         50 horas/mensal
-		        </option>
-		       </select>
-		      </div> 
+        		<input type="number" class="form-control" id="carga_horaria" placeholder="Informe a quantidade de aulas obrigatórias mensal">
+        	  </div>
 
             <div class="form-group">
             <label for="exampleInputPassword3">Data de Contratação</label>
@@ -67,7 +32,7 @@
 
             <div class="form-group">
           <label for="exampleInputPassword1">Disciplinas que esse Professor Leciona</label><br>
-          <select name="select" id="disciplinas" multiple>
+          <select class="select form-control" name="select" id="disciplinas" multiple>
             <option value="port">Portugues</option>
             <option value="mat">Matematica</option>
             <option value="fis">Fisica</option>

@@ -8,11 +8,10 @@
           <h1 class="page-header">Cadastro de Turno</h1>
 
         	 <form>
-        	 
         	 <div class="form-group">
           <label for="exampleInputPassword1">Turno</label><br>
-          <select name="select" id="turno">
-            <option value="default" selected="disabled">Selecione um Turma para as Aulas</option>
+          <select name="select" id="turno" class="select form-control">
+            <option value="" disabled selected>Selecione um Turma para as Aulas</option>
             <option value="matutino">Matutino</option>
             <option value="vespertino">Vespertino</option>
             <option value="noturno">Noturno</option>

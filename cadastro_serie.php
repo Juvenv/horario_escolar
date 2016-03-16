@@ -15,7 +15,7 @@
 
           <div class="form-group">
           <label for="exampleInputPassword3">Disciplinas dessa Série</label><br>
-          <select name="select" id="disciplinas" multiple>
+          <select class="select form-control" name="select" id="disciplinas" multiple>
             <option value="port">Portugues</option>
             <option value="mat">Matematica</option>
             <option value="fis">Fisica</option>
