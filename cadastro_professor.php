@@ -39,6 +39,7 @@
           </select>
           </div> 
 
+<<<<<<< HEAD
           <div class="form-group">
           <label for="exampleInputPassword4">Restrições de Horário de Professor</label><br>
           <div style="text-align:center">
@@ -164,5 +165,90 @@
 	         <button type="submit" class="btn btn-info">Cadastrar</button>
   	   </form>
     </div>
+=======
+	 <form>
+	 
+	 <div class="form-group">
+		<label for="exampleInputEmail1">Matrícula</label>
+		<input type="text" class="form-control" id="matricula" placeholder="Informe a matrícula">
+	  </div>
+	 
+	 <div class="form-group">
+		<label for="exampleInputPassword1">Nome</label>
+		<input type="text" class="form-control" id="nome" placeholder="Informe o nome">
+	  </div>
+	  
+	  
+	  <div class="form-group">
+		<label for="exampleInputPassword1">Data de contratação</label>
+		<input class="form-control" id="date1" name="date1" placeholder="DD/MM/YYYY" type="text"/>
+	  </div>
+	  
+	  <div class="form-group">
+	   <label for="exampleInputPassword1">Carga Horária Obrigatória</label>
+      
+	  <select class="select form-control" id="select" name="select">
+
+	   <option >
+         Selecione 
+        </option>
+	  
+	  <option value="10">
+         10 horas/mensal
+        </option>
+
+        <option value="15">
+         15 horas/mensal       
+	   </option>
+	   
+        <option value="20">
+         20 horas/mensal
+        </option>
+		
+		 <option value="30">
+         30 horas/mensal
+        </option>
+		 
+		 <option value="35">
+         35 horas/mensal
+        </option>
+		
+		 <option value="40">
+         40 horas/mensal
+        </option>
+		
+		 <option value="45">
+         45 horas/mensal
+        </option>
+		
+		 <option value="50">
+         50 horas/mensal
+        </option>
+		
+       </select>
+      </div>
+	  
+	  <button class="btn btn-info" name="submit" type="submit"> cadastrar </button>
+     </div>   
+    
+    
+</div>
+</div>
+</div>
+</form>
+	
+	
+   <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+	<script src="js/data.js"></script>
+>>>>>>> origin/master
   </body>
 </html>
