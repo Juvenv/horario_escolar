@@ -140,6 +140,12 @@ body {
     position: fixed;
     top: 0;
   }
+  
+@media (min-width: 768px)
+.col-sm-3 {
+    width: 16%;
+}
+
   .mastfoot {
     position: fixed;
     bottom: 0;
@@ -163,4 +169,5 @@ body {
     width: 700px;
   }
 }
+
 

@@ -20,7 +20,7 @@
       	  </div>
       	  
       	  <div class="form-group">
-      		<label for="exampleInputPassword3">Turno</label><br>
+      		<label for="exampleInputPassword3">Turma</label><br>
       		<select name="select" id="turno" class="select form-control">
             <option value="" disabled selected>Selecione um Turma para as Aulas</option>
             <option value="matutino">Matutino</option>

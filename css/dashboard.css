@@ -157,3 +157,30 @@ a {
 .h1, h1 {
     font-size: 45px;
 }
+
+
+.table {
+    width: 60%;
+    max-width: 70%;    
+    margin-left: 238px;
+    margin-top: 30px;
+}
+table {
+    background-color: rgba(255,255,255,.15);
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    margin-left: 361px;
+}

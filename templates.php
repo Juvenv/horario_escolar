@@ -21,7 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-
+	
  
     <script src="js/ie-emulation-modes-warning.js"></script>
 
@@ -59,15 +59,13 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="menu_principal.php">Categorias<span class="sr-only">(current)</span></a></li>
-            <li><a href="cadastro_turno.php">Turno</a></li>
-            <li><a href="cadastro_disciplina.php">Disciplina</a></li>
-            <li><a href="cadastro_professor.php">Professor</a></li>
-            <li><a href="cadastro_serie.php">Série</a></li>
-   	        <li><a href="cadastro_turma.php">Turma</a></li>
+            <li><a href="listaTurno.php">Turno</a></li>
+            <li><a href="listaDisciplina.php">Disciplina</a></li>
+            <li><a href="listaProfessor.php">Professor</a></li>
+            <li><a href="listaSerie.php">Série</a></li>
+   	        <li><a href="listaTurma.php">Turma</a></li>
 			<li><a href="#">Gerar Horário</a></li>
           </ul>
-         
-         
         </div>
         
       </div>
