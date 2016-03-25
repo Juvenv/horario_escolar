@@ -9,10 +9,15 @@ disciplina varchar(20) not null
 
 CREATE TABLE Professor (
 matricula int PRIMARY KEY,
-professor varchar(20) not null,
+nome_professor varchar(20) not null,
 carga_horaria int not null, 	/* Numero de Aulas que o professor vai ter que ministrar */
-data_contratacao date not null,
-codigo_disciplina varchar(10) not null,
+data_contratacao varchar(10) not null
+);
+
+CREATE TABLE Professor_Disciplina ( /* para que seja associoada mais de uma disciplina para o professor*/
+matricula int,	                    /* Fica mais fácil de fazer as pesquisas e organizar os dados*/
+codigo_disciplina varchar(10) not null, /*além disso é um das etapas do projeto de BD, criar essas relações*/
+FOREIGN KEY(matricula) REFERENCES Professor (matricula),
 FOREIGN KEY(codigo_disciplina) REFERENCES Disciplina (codigo_disciplina)
 );
 
@@ -24,23 +29,22 @@ FOREIGN KEY(matricula) REFERENCES Professor (matricula)
 );
 
 CREATE TABLE Serie (
-serie varchar(10) PRIMARY KEY,
-codigo_disciplina varchar(10) not null,
-aulas_disciplina int not null,		/* Quantas aulas na semana cada disciplina vai ter */
-FOREIGN KEY(codigo_disciplina) REFERENCES Disciplina (codigo_disciplina)
+serie varchar(10) PRIMARY KEY
 );
 
-CREATE TABLE Turno (
-turno varchar(10) PRIMARY KEY,
-numero_aulas int not null /* Numero de aulas na semana */
+CREATE TABLE Serie_Disciplinas (
+serie varchar(10),
+codigo_disciplina varchar(10) not null,
+aulas_disciplina int not null,		/* Esse campo é onde diz quantas aulas na semana cada disciplina vai ter */
+FOREIGN KEY(codigo_disciplina) REFERENCES Disciplina (codigo_disciplina),
+FOREIGN KEY(serie) REFERENCES Serie (serie)
 );
 
 CREATE TABLE Turma (
 turma varchar(10) PRIMARY KEY,
-serie varchar(10) not null,
 turno varchar(10) not null,
-FOREIGN KEY(serie) REFERENCES Serie (serie),
-FOREIGN KEY(turno) REFERENCES Turno (turno)
+serie varchar(10) not null,
+FOREIGN KEY(serie) REFERENCES Serie (serie)
 );
 
 CREATE TABLE Horario (

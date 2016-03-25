@@ -21,7 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-
+	
  
     <script src="js/ie-emulation-modes-warning.js"></script>
 
@@ -59,12 +59,13 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="menu_principal.php">Categorias<span class="sr-only">(current)</span></a></li>
-            <li><a href="cadastro_turno.php">Turno</a></li>
-            <li><a href="cadastro_disciplina.php">Disciplina</a></li>
-            <li><a href="cadastro_professor.php">Professor</a></li>
-            <li><a href="cadastro_serie.php">Série</a></li>
-   	        <li><a href="cadastro_turma.php">Turma</a></li>
-			<li><a href="#">Gerar Horário</a></li>
+            <li><a href="turno.php">Turno</a></li>
+            <li><a href="disciplina.php">Disciplina</a></li>
+            <li><a href="professor.php">Professor</a></li>
+            <li><a href="restricao.php">Restrição de Horário</a></li>
+            <li><a href="serie.php">Série</a></li>
+   	        <li><a href="turma.php">Turma</a></li>
+            <li><a href="#">Gerar Horário</a></li>
           </ul>
          
          
@@ -77,12 +78,12 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="js/vendor/holder.min.js"></script>
+    <script src="../js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
 
