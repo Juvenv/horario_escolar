@@ -3,6 +3,7 @@
   include "templates.php";
   require_once "conexao.php";
   $resultado_sigla = mysql_query("SELECT * FROM disciplinas ORDER BY 'sigla_disciplina'");
+  $resultado_sigla2 = mysql_query("SELECT * FROM disciplinas ORDER BY 'sigla_disciplina'");
 ?>
 	
   <body>
@@ -62,9 +63,9 @@
                   <select name="sigla_disciplina[]" id="ex3" class="select form-control">
                     <option value="" disabled selected>Selecione uma Sigla de Disciplina</option>
                     <?php
-                      while($linhas = mysql_fetch_array($resultado_sigla)){
-                        $siglaList = $linhas['sigla_disciplina'];
-                        echo '<option value="'.$siglaList.'">'.$siglaList.'</option>';
+                      while($linhas2 = mysql_fetch_array($resultado_sigla2)){
+                        $siglaList2 = $linhas2['sigla_disciplina'];
+                        echo '<option value="'.$siglaList2.'">'.$siglaList2.'</option>';
                       }
                     ?>
                   </select>

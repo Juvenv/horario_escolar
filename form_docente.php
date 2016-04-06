@@ -3,6 +3,7 @@
    include "templates.php";
    require_once "conexao.php";
    $resultado_sigla = mysql_query("SELECT * FROM disciplinas ORDER BY 'sigla_disciplina'");
+   $resultado_sigla2 = mysql_query("SELECT * FROM disciplinas ORDER BY 'sigla_disciplina'");
 ?>
 
  <body>
@@ -39,7 +40,7 @@
                       var addButton = $('.btn-primary'); //Add button selector
                       var wrapper = $('.field_wrapper'); //Input field wrapper
                       var fieldHTML = '<div><div class="col-xs-11"><br><select name="sigla_disciplina[]" id="ex3" class="select form-control"><option value="" disabled selected>Selecione uma Sigla de Disciplina</option><?php while($linhas = mysql_fetch_array($resultado_sigla)){ $siglaList = $linhas['sigla_disciplina']; echo '<option value="'.$siglaList.'">'.$siglaList.'</option>';
-                              }?></select><br></div><div class="col-xs-1"><label for="ex5"></label><br></div><a href="javascript:void(0);" id="ex5" type="button" class="btn btn-danger" title="Remove field"><span class="glyphicon glyphicon-minus"></span></a></div>'; //New input field html
+                              }?></select><br></div><div class="col-xs-1"><br></div><a href="javascript:void(0);" type="button" class="btn btn-danger" title="Remove field"><span class="glyphicon glyphicon-minus"></span></a></div>'; //New input field html
                       var x = 1; //Initial field counter is 1
                       $(addButton).click(function(){ //Once add button is clicked
                           if(x < maxField){ //Check maximum number of input fields
@@ -56,7 +57,9 @@
                   </script>
                   
                 <div class="form-group">
-                  <label for="ex3">Sigla da Disciplina</label>
+	                <div class="col-xs-11">
+	                  	<label for="ex3">Sigla da Disciplina</label>
+	                </div>
                   <div class="field_wrapper">
                     <div>
                       <div class="col-xs-11">
@@ -64,21 +67,21 @@
                           <select name="sigla_disciplina[]" id="ex3" class="select form-control">
                             <option value="" disabled selected>Selecione uma Sigla de Disciplina</option>
                             <?php
-                              while($linhas = mysql_fetch_array($resultado_sigla)){
-                                $siglaList = $linhas['sigla_disciplina'];
-                                echo '<option value="'.$siglaList.'">'.$siglaList.'</option>';
+                              while($linhas2 = mysql_fetch_array($resultado_sigla2)){
+                                $siglaList2 = $linhas2['sigla_disciplina'];
+                                echo '<option value="'.$siglaList2.'">'.$siglaList2.'</option>';
                               }
                             ?>
                           </select><br>
                       </div>
                       <div class="col-xs-1">
-                          <label for="ex5"></label><br>
+                      	<br>
                       </div>
-                          <a href="javascript:void(0);" id='ex5' type='button' class='btn btn-primary' title="Add field"><span class='glyphicon glyphicon-plus'></span></a>
+                          <a href="javascript:void(0);" type='button' class='btn btn-primary' title="Add field"><span class='glyphicon glyphicon-plus'></span></a>
                     </div>
                   </div>
                 </div>
-
+                
             <button type="submit" class="btn btn-info">Salvar</button>
             <button class="btn btn-danger" type="reset">Limpar</button>
 	         

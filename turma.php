@@ -8,10 +8,13 @@
           <h1 class="page-header">Turma</h1>
       </div>
 
-          <table border="1" class="table table-striped">
+          <table border="1" class="table table-striped" id='table'>
           <caption>
              <a href="form_turma.php" class="btn btn-primary">
               <span class="glyphicon glyphicon-plus"></span> Adicionar Turma</a> 
+              <div class="form-group pull-right">
+                <input type="text" class="form-control" id="search" placeholder="Pesquisar Turma">
+              </div>
           </caption>
             <thead>
               <tr>
@@ -40,3 +43,36 @@
         ?>
             </tbody>
         </table>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+          $('#search').keyup(function()
+          {
+            searchTable($(this).val());
+          });
+        });
+        function searchTable(inputVal)
+        {
+          var table = $('#table');
+          table.find('tr').each(function(index, row)
+          {
+            var allCells = $(row).find('td');
+            if(allCells.length > 0)
+            {
+              var found = false;
+              allCells.each(function(index, td)
+              {
+                var regExp = new RegExp(inputVal, 'i');
+                if(regExp.test($(td).text()))
+                {
+                  found = true;
+                  return false;
+                }
+              });
+              if(found == true)$(row).show();else $(row).hide();
+            }
+          });
+        }
+      </script>
