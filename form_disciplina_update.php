@@ -1,20 +1,25 @@
 
-<?php	include "templates.php";?>
+<?php
+    include "templates.php";
+    $sigla_disciplina = $_GET['sigla_disciplina'];
+    $disciplina = $_GET['disciplina'];
+?>
+
   <body>
+        <form method="post" action="dao_disciplina/update_disciplina.php">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Disciplina</h1>
-        	 <form method="post" action="dao_disciplina/insert_disciplina.php">
         	 <div class="form-group">
         		<label for="exampleInputEmail1">Sigla da Disciplina</label>
-        		<input type="text" class="form-control" name="sigla_disciplina" placeholder="Informe a Sigla da Disciplina">
-        	 </div>
-        	 
-         <div class="form-group">
+        		<input type="text" class="form-control" name="sigla_disciplina" value="<?php echo htmlspecialchars($sigla_disciplina);?>" style='background: #EEE; cursor: not-allowed; color: #777' readonly>
+        </div>
+
+        <div class="form-group">
          <label>Disciplina</label><br>
           <select name="disciplina" class="select form-control">
-            <option value="" disabled selected>Selecionar</option>
-            <option value="Português">Português</option>
-            <option value="Matemática">Matemática</option>
+            <option value="<?php echo htmlspecialchars($disciplina);?>" disabled selected><?php echo htmlspecialchars($disciplina);?></option>
+            <option value='Português'>Português</option>
+            <option value='Matemática'>Matemática</option>
             <option value="Historia">História</option>
             <option value="Geografia">Geografia</option>
             <option value="Física">Física</option>
@@ -30,13 +35,11 @@
             <option value="Espanhol">Espanhol</option>
             <option value="Filosofia">Filosofia</option>
           </select>
-          </div> 
+        </div>
 
-        	  <button type="submit" class="btn btn-info">Salvar</button>
+            <button type="submit" class="btn btn-info">Salvar</button>
             <button class="btn btn-danger" type="reset">Limpar</button>
-	       </form>
-      </div>
-  </body>
-
-
-
+        
+        </div>
+        </form>
+</body>

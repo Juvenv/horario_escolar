@@ -1,6 +1,4 @@
 
-<!DOCTYPE html>
-<html lang="pt-br">
 <?php include "templates.php"; ?>
 
   <body>
@@ -22,13 +20,13 @@
             </div>
 
 			<div class="col-xs-6 col-sm-2 placeholder">
-              <a href="professor.php"><img src="imagens/professor.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
+              <a href="docente.php"><img src="imagens/professor.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
               <h4>Professor</h4>
               <span class="text-muted"> 3º Passo</span>
             </div>
 
        <div class="col-xs-6 col-sm-2 placeholder">
-              <a href="turno.php"><img src="imagens/turno.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
+              <a href="restricoes.php"><img src="imagens/turno.jpg" width="100" height="100" class="img-circle" alt="Generic placeholder thumbnail"></a>
               <h4>Restrições de Horario</h4>
               <span class="text-muted"> 4º Passo</span>
             </div>
@@ -45,13 +43,7 @@
               <span class="text-muted"> 6º Passo</span>
             </div>
 
-			<div class="col-xs-6 col-sm-2 placeholder">
-			 <img src="imagens/gerar_horario.png" width="100"  height="100" class="img-circle" alt="Generic placeholder thumbnail">
-              <h4>Gerar Horário</h4> 
-              <span class="text-muted"> 7º Passo</span>
-            </div>
-          </div>
-               
+          </div>  
         </div>
   </body>
 </html>

@@ -1,27 +1,20 @@
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
 <?php 
 
   include "templates.php";
   require_once "conexao.php";
-
-?>
-	
-  <head>
-	<meta http-equiv="Content-Type" content="text/html", charset="utf-8" >
-  </head>
+  $resultado_turno = mysql_query("SELECT * FROM turnos ORDER BY 'turno'");
+  $resultado_serie = mysql_query("SELECT * FROM series ORDER BY 'serie'");
+  ?>
 
   <body>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Turma</h1>
 
-      	 <form method="post" action="?go=cadastrar">
-
+      	 <form method="post" action="dao_turma/insert_turma.php">
           <div class="form-group">
           <label>Turma</label><br>
-          <select name="turma" id="turma" class="select form-control">
+          <select name="turma" class="select form-control">
             <option value="" disabled selected>Selecione uma Turma</option>
             <option value="A">A</option>
             <option value="B">B</option>
@@ -48,30 +41,33 @@
             <option value="X">X</option>
             <option value="Z">Z</option>
           </select>
-          </div> 
+          </div>
 
-      	   <div class="form-group">
+      	 <div class="form-group">
           <label>Turno</label><br>
-          <select name="turno" id="turno" class="select form-control">
+          <select name="turno" class="select form-control">
             <option value="" disabled selected>Selecione um Turno para as Aulas</option>
-            <option value="Matutino">Matutino</option>
-            <option value="Vespertino">Vespertino</option>
-            <option value="Noturno">Noturno</option>
+            <?php
+              while($linhas = mysql_fetch_array($resultado_turno)){
+                $turnoList = $linhas['turno'];
+                echo '<option value="'.$turnoList.'">'.$turnoList.'</option>';
+              }
+            ?>
           </select>
-          </div> 
+          </div>
 
           <div class="form-group">
           <label>Série</label><br>
-          <select name="serie" id="serie" class="select form-control">
+          <select name="serie" class="select form-control">
             <option value="" disabled selected>Selecione uma Série</option>
-            <option value="6 Ano">6º Ano</option>
-            <option value="7 Ano">7º Ano</option>
-            <option value="8 Ano">8º Ano</option>
-            <option value="9 Ano">9º Ano</option>
-            <option value="1 Grau">1º Grau</option>
-            <option value="2 Grau">2º Grau</option>            
-            <option value="3 Grau">3º Grau</option>
-           
+            <?php
+              while($linhas = mysql_fetch_array($resultado_serie)){
+                $serieList = $linhas['serie'];
+                echo '<option value="'.$serieList.'">'.$serieList.'</option>';
+              }
+            ?>
+          </select>
+          </div>
 
 	         <button type="submit" class="btn btn-info">Salvar</button>
            <button class="btn btn-danger" type="reset">Limpar</button>

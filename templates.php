@@ -10,22 +10,14 @@
     <meta name="description" content="Sistema geração de horario escolar">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
     <title>SGHE</title>
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-	
- 
     <script src="js/ie-emulation-modes-warning.js"></script>
-
-  
   </head>
 
   <body>
@@ -46,7 +38,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="menu_principal.php">Início</a></li>
-			<li><a href="#">Ajuda</a></li>
+            <li><a href="sobre.php">Sobre</a></li>
+			     <li><a href="#">Ajuda</a></li>
             <li><a href="index.php">Sair</a></li>                      
           </ul>
          
@@ -61,14 +54,13 @@
             <li class="active"><a href="menu_principal.php">Categorias<span class="sr-only">(current)</span></a></li>
             <li><a href="turno.php">Turno</a></li>
             <li><a href="disciplina.php">Disciplina</a></li>
-            <li><a href="professor.php">Professor</a></li>
-            <li><a href="restricao.php">Restrição de Horário</a></li>
+            <li><a href="docente.php">Professor</a></li>
+            <li><a href="restricoes.php">Restrição de Horário</a></li>
             <li><a href="serie.php">Série</a></li>
    	        <li><a href="turma.php">Turma</a></li>
             <li><a href="#">Gerar Horário</a></li>
           </ul>
         </div>
-        
       </div>
     </div>
 
@@ -77,6 +69,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../js/vendor/holder.min.js"></script>

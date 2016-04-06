@@ -1,27 +1,19 @@
 
-<?php 
-  include "templates.php";
-  require_once "conexao.php";
-  $resultado_sigla = mysql_query("SELECT * FROM disciplinas ORDER BY 'sigla_disciplina'");
+<?php
+    include "templates.php";
+    $serie = $_GET['serie'];
+    require_once "conexao.php";
+    $resultado_sigla = mysql_query("SELECT * FROM disciplinas ORDER BY 'sigla_disciplina'");
 ?>
-	
+
   <body>
+        <form method="post" action="dao_serie/update_serie.php">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Série</h1>
-          <form method="post" action="dao_serie/insert_serie.php">        	 
-          <div class="form-group">
-          <label>Série</label><br>
-          <select name="serie" class="select form-control">
-            <option value="" disabled selected>Selecione uma Série</option>
-            <option value="6º Ano">6º Ano</option>
-            <option value="7º Ano">7º Ano</option>
-            <option value="8º Ano">8º Ano</option>
-            <option value="9º Ano">9º Ano</option>
-            <option value="1º Grau">1º Grau</option>
-            <option value="2º Grau">2º Grau</option>            
-            <option value="3º Grau">3º Grau</option>
-          </select>
-          </div>
+        	 <div class="form-group">
+        		<label for="exampleInputEmail1">Série</label>
+        		<input type="text" class="form-control" name="serie" value="<?php echo htmlspecialchars($serie);?>" style='background: #EEE; cursor: not-allowed; color: #777' readonly>
+        </div>
 
           <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
           <script type="text/javascript">
@@ -79,11 +71,10 @@
           </div>
           <br>
         </div>
-          
-	           <button type="submit" class="btn btn-info">Salvar</button>
-             <button class="btn btn-danger" type="reset">Limpar</button>
 
-	       </form>
+            <button type="submit" class="btn btn-info">Salvar</button>
+            <button class="btn btn-danger" type="reset">Limpar</button>
+        
         </div>
-  </body>
-</html>
+        </form>
+</body>

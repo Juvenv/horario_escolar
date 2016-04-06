@@ -184,3 +184,19 @@ table {
     border-color: #46b8da;
     margin-left: 361px;
 }
+
+p {
+    margin: 0px 0 10px;
+    text-align: justify;
+}
+
+.entry:not(:first-of-type)
+{
+    margin-top: 10px;
+}
+
+.glyphicon
+{
+    font-size: 12px;
+}
+
