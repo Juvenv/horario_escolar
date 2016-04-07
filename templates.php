@@ -39,7 +39,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="menu_principal.php">Início</a></li>
             <li><a href="sobre.php">Sobre</a></li>
-			     <li><a href="#">Ajuda</a></li>
+			     <li><a href="ajuda.php">Ajuda</a></li>
             <li><a href="index.php">Sair</a></li>                      
           </ul>
          
