@@ -25,7 +25,7 @@ FOREIGN KEY(sigla_disciplina) REFERENCES Disciplinas (sigla_disciplina)
 
 CREATE TABLE Restricoes (
 id_restricao int auto_increment PRIMARY KEY,
-horario_inviavel int not null,
+horario_inviavel varchar(3) not null,
 matricula int not null,
 FOREIGN KEY(matricula) REFERENCES Docentes (matricula)
 );

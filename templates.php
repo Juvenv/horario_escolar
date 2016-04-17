@@ -1,4 +1,9 @@
 
+<?php
+  include_once "seguranca.php";
+  protegePagina();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -37,12 +42,11 @@
 		
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="menu_principal.php">Início</a></li>
+            <li><a href="menu_principal.php"><?php echo "".$_SESSION['nome_usuario'];?></a></li>
             <li><a href="sobre.php">Sobre</a></li>
-			     <li><a href="ajuda.php">Ajuda</a></li>
-            <li><a href="index.php">Sair</a></li>                      
+			      <li><a href="ajuda.php">Ajuda</a></li>
+            <li><a href="index.php" onclick="<?php expulsaVisitante();?>">Sair</a></li>
           </ul>
-         
         </div>
       </div>
     </nav>
@@ -64,17 +68,17 @@
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../js/vendor/holder.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <!-- 
+      Bootstrap core JavaScript 
+      Placed at the end of the document so the pages load faster
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
+      <script src="../js/bootstrap.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
+      <script src="../js/vendor/holder.min.js"></script>
+      <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    -->
+
   </body>
 </html>
 

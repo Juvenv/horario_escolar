@@ -1,8 +1,10 @@
 
 <?php
-  include "templates.php";
-  require_once "conexao.php";
-  $resultado = mysql_query("SELECT * FROM series ORDER BY 'serie'");
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  include_once "templates.php";
+  $resultado = mysql_query("SELECT * FROM series where login='$login' ORDER BY 'nome_serie'");
 ?>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Serie</h1>
@@ -19,6 +21,8 @@
             <thead>
               <tr>
                   <th>Série</th>
+                  <th>Disciplinas</th>
+                  <th>Turmas</th>
                   <th>Editar Cadastro</th>
                   <th>Excluir Cadastro</th>
               </tr>
@@ -26,11 +30,31 @@
             <tbody>
         <?php
           while($linhas = mysql_fetch_array($resultado)){
-              $serie = $linhas['serie'];
+              $id_serie = $linhas['id_serie'];
+              $nome_serie = $linhas['nome_serie'];
+              $disciplinas = mysql_query("SELECT * FROM disciplinas_por_serie where id_serie='$id_serie' and login='$login'");
+              $sigla = array();
+              while ($aux = mysql_fetch_array($disciplinas)) {
+                $id_disciplina = $aux['id_disciplina'];
+                $aux2 = mysql_fetch_array(mysql_query("SELECT * FROM disciplinas where id_disciplina='$id_disciplina' and login='$login'"));
+                $aux3 = $aux2['sigla_disciplina'];
+                array_push($sigla, $aux3);
+              }
+              $sigla_disciplina = implode('<br/>', $sigla);
+              $turma = mysql_query("SELECT * FROM turmas where id_serie='$id_serie' and login='$login'");
+              $turmas = array();
+              while ($aux = mysql_fetch_array($turma)) {
+                $id_turma = $aux['id_turma'];
+                $aux2 = $aux['nome_turma'];
+                array_push($turmas, $aux2);
+              }
+              $nome_turma = implode('<br/>', $turmas);
               echo "<tr>";
-              echo "<td>".$serie."</td>";
-              echo "<td><a href='form_serie_update.php?serie=$serie' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_serie/delete_serie.php?serie=$serie' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td>".$nome_serie."</td>";
+              echo "<td>".$sigla_disciplina."</td>";
+              echo "<td>".$nome_turma."</td>";
+              echo "<td><a href='form_serie_update.php?id_serie=$id_serie&nome_serie=$nome_serie' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
+              echo "<td><a href='dao_serie/delete_serie.php?id_serie=$id_serie' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>

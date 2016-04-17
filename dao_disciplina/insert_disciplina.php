@@ -1,16 +1,18 @@
 <?php
-require_once "../conexao.php";
-    
+
+    include_once '../seguranca.php';
+    protegePagina();
+    $login = $_SESSION['login'];
     $sigla_disciplina = $_POST['sigla_disciplina'];
-    $disciplina = $_POST['disciplina'];
-    if(empty($sigla_disciplina)) {
-        echo "<script>alert('Preencha todos os campos para cadastrar.');</script>";
+    $nome_disciplina = $_POST['nome_disciplina'];
+
+    $validacaoIquais = mysql_fetch_assoc(mysql_query("select * from disciplinas where sigla_disciplina='$sigla_disciplina' and login='$login'"));
+    if (!empty($validacaoIquais)){
+        echo "<script>alert('Disciplina já Existe.'); window.location.href='../disciplina.php';</script>";
     }
-    elseif(empty($disciplina)) {
-        echo "<script>alert('Preencha todos os campos para cadastrar.');</script>";
+    else {
+        mysql_query("insert into disciplinas (sigla_disciplina, nome_disciplina, login) values ('$sigla_disciplina','$nome_disciplina', '$login')");
+        echo "<script>alert('Cadastrado com Sucesso.'); window.location.href='../disciplina.php';</script>";    
     }
-    else{
-        mysql_query("insert into disciplinas (sigla_disciplina, disciplina) values ('$sigla_disciplina','$disciplina')");
-        echo "<script>alert('Cadastrado com Sucesso.'); window.location.href='../disciplina.php';</script>";
-    }
+
 ?>

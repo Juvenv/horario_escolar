@@ -1,9 +1,14 @@
 
 <?php
-  include "templates.php";
-  require_once "conexao.php";
-  $resultado = mysql_query("SELECT * FROM restricoes ORDER BY 'matricula'");
+
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  include_once "templates.php";
+  $resultado = mysql_query("SELECT * FROM restricoes where login='$login' ORDER BY 'id_restricao'");
+
 ?>
+
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Restrições de Horário</h1>
       </div>
@@ -18,20 +23,34 @@
           </caption>
             <thead>
               <tr>
-                  <th>Matricula</th>
+                  <th>Professor</th>
+                  <th>Horario Inviavel</th>
                   <th>Editar Cadastro</th>
                   <th>Excluir Cadastro</th>
               </tr>
             </thead>
             <tbody>
         <?php
-          while($linhas = mysql_fetch_array($resultado)){
-              $matricula = $linhas['matricula'];
-              echo "<tr>";
-              echo "<td>".$matricula."</td>";
-              echo "<td><a href='form_restricoes_update.php?matricula=$matricula' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_restricoes/delete_restricoes.php?matricula=$matricula' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
-              echo "</tr>";
+          $count = '';
+          while($linhas = mysql_fetch_array($resultado)) {
+              $id_docente = $linhas['id_docente'];
+              $professor = mysql_fetch_array(mysql_query("SELECT * FROM docentes where id_docente='$id_docente' and login='$login'"));
+              $nome_professor = $professor['nome_professor'];
+              $horario = mysql_query("SELECT * FROM restricoes where id_docente='$id_docente' and login='$login'");
+              $aulas = array();
+              while ($aux = mysql_fetch_array($horario)) {
+                array_push($aulas, $aux['horario_inviavel']);
+              }
+              $horario_inviavel = implode('<br/>', $aulas);
+              if ($nome_professor != $count){
+                echo "<tr>";
+                echo "<td>".$nome_professor."</td>";
+                echo "<td>".$horario_inviavel."</td>";
+                echo "<td><a href='form_restricoes_update.php?nome_professor=$nome_professor' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
+                echo "<td><a href='dao_restricoes/delete_restricoes.php?id_docente=$id_docente' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+                echo "</tr>";
+                $count = $nome_professor;
+              }
             }
         ?>
             </tbody>

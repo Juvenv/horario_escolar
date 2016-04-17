@@ -1,7 +1,10 @@
 
-<?php include "templates.php"; ?>
-
-  <body>
+<?php 
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = ''.$_SESSION['login'];
+  include_once "templates.php";
+?>
 
         <div class="col-sm-9 col-sm-offset-2 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Passo a Passo</h1>
@@ -45,5 +48,4 @@
 
           </div>  
         </div>
-  </body>
-</html>
+

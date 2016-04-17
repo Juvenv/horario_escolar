@@ -1,21 +1,23 @@
 
 <?php 
-
-  include "templates.php";
-  require_once "conexao.php";
-  $resultado_turno = mysql_query("SELECT * FROM turnos ORDER BY 'turno'");
-  $resultado_serie = mysql_query("SELECT * FROM series ORDER BY 'serie'");
-  ?>
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  include_once "templates.php";
+  $resultado_turno = mysql_query("SELECT * FROM turnos where login='$login' ORDER BY 'nome_turno'");
+  $resultado_serie = mysql_query("SELECT * FROM series where login='$login' ORDER BY 'nome_serie'");
+?>
 
   <body>
+  
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Turma</h1>
 
       	 <form method="post" action="dao_turma/insert_turma.php">
           <div class="form-group">
           <label>Turma</label><br>
-          <select name="turma" class="select form-control">
-            <option value="" disabled selected>Selecione uma Turma</option>
+          <select name="nome_turma" class="select form-control" required>
+            <option disabled selected>Selecione uma Turma</option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
@@ -45,11 +47,11 @@
 
       	 <div class="form-group">
           <label>Turno</label><br>
-          <select name="turno" class="select form-control">
-            <option value="" disabled selected>Selecione um Turno para as Aulas</option>
+          <select name="nome_turno" class="select form-control" required>
+            <option disabled selected>Selecione um Turno para as Aulas</option>
             <?php
               while($linhas = mysql_fetch_array($resultado_turno)){
-                $turnoList = $linhas['turno'];
+                $turnoList = $linhas['nome_turno'];
                 echo '<option value="'.$turnoList.'">'.$turnoList.'</option>';
               }
             ?>
@@ -58,11 +60,11 @@
 
           <div class="form-group">
           <label>Série</label><br>
-          <select name="serie" class="select form-control">
-            <option value="" disabled selected>Selecione uma Série</option>
+          <select name="nome_serie" class="select form-control" required>
+            <option disabled selected>Selecione uma Série</option>
             <?php
               while($linhas = mysql_fetch_array($resultado_serie)){
-                $serieList = $linhas['serie'];
+                $serieList = $linhas['nome_serie'];
                 echo '<option value="'.$serieList.'">'.$serieList.'</option>';
               }
             ?>
@@ -74,4 +76,4 @@
 	       </form>
     </div>
   </body>
-</html>
+

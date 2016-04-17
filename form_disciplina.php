@@ -1,17 +1,25 @@
 
-<?php	include "templates.php";?>
+<?php	
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  include_once "templates.php";
+?>
+
   <body>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Disciplina</h1>
+
         	 <form method="post" action="dao_disciplina/insert_disciplina.php">
-        	 <div class="form-group">
+        	 
+           <div class="form-group">
         		<label for="exampleInputEmail1">Sigla da Disciplina</label>
-        		<input type="text" class="form-control" name="sigla_disciplina" placeholder="Informe a Sigla da Disciplina">
+        		<input type="text" class="form-control" name="sigla_disciplina" placeholder="Informe a Sigla da Disciplina" required maxlength="20">
         	 </div>
         	 
          <div class="form-group">
          <label>Disciplina</label><br>
-          <select name="disciplina" class="select form-control">
+          <select name="nome_disciplina" class="select form-control" required>
             <option value="" disabled selected>Selecionar</option>
             <option value="Português">Português</option>
             <option value="Matemática">Matemática</option>

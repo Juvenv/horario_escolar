@@ -1,58 +1,102 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Sistema geração de horario escolar">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Sistema gerador de horário escolar</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-
-    <script src="js/ie-emulation-modes-warning.js"></script>
-
-   
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
-
   <body>
 
-    <div class="site-wrapper">
+    <div class="form">
+      
+      <ul class="tab-group">
+        <li class="tab active"><a href="#login">Entrar</a></li>
+        <li class="tab"><a href="#signup">Criar conta</a></li>
+      </ul>
 
-      <div class="site-wrapper-inner">
+      <div class="tab-content">
 
-        <div class="cover-container">
-
-          <div class="inner cover">
-            <h1 class="cover-heading">SISTEMA GERADOR DE HORÁRIO ESCOLAR - SGHE</h1>
-            
-              <a href="menu_principal.php" class="btn btn-lg btn-default">Entrar</a>
-            
-			</p>
+        <div id="login">   
+          <h1>Bem Vindo ao SGHE!</h1>
+          
+          <form action="login.php" method="post">
+          
+            <div class="field-wrap">
+            <label>
+              Email<span class="req">*</span>
+            </label>
+            <input type="email" name='login' required autocomplete="off" maxlength="50" autofocus="autofocus" />
           </div>
-
+          
+          <div class="field-wrap">
+            <label>
+              Senha<span class="req">*</span>
+            </label>
+            <input type="password" name='senha'required autocomplete="off" maxlength="50"/>
+          </div>
+          
+          <p class="forgot"><a href="#">Esqueceu sua senha?</a></p>
+          
+          <button class="button button-block"/>Entrar</button>
+          
+          </form>
         </div>
 
-      </div>
+        <div id="signup">   
+          <h1>Registre-se no SGHE</h1>
+          
+          <form action="registrar.php" method="post">
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                Nome<span class="req">*</span>
+              </label>
+              <input type="text" name='nome_usuario' required autocomplete="off" maxlength="50"/>
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                Sobrenome<span class="req">*</span>
+              </label>
+              <input type="text" name='sobrenome_usuario' required autocomplete="off" maxlength="50"/>
+            </div>
+          </div>
 
-    </div>
+          <div class="field-wrap">
+            <label>
+              Email<span class="req">*</span>
+            </label>
+            <input type="email" name='login' required autocomplete="off" maxlength="50"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Senha<span class="req">*</span>
+            </label>
+            <input type="password" name='senha' required autocomplete="off" maxlength="50"/>
+          </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
+          <div class="field-wrap">
+            <label>
+              Novamente a Senha<span class="req">*</span>
+            </label>
+            <input type="password" name='senha_confirmacao' required autocomplete="off" maxlength="50"/>
+          </div>
+          
+          <button type="submit" class="button button-block"/>Registrar</button>
+          
+          </form>
+        </div>
+
+      </div><!-- tab-content -->
+</div> <!-- /form -->
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+    
   </body>
 </html>

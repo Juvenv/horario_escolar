@@ -1,29 +1,32 @@
 
 <?php
-    include "templates.php";
+    include_once 'seguranca.php';
+    protegePagina();
+    $login = $_SESSION['login'];
+    include_once "templates.php";
     $id_turma = $_GET['id_turma'];
-    $turma = $_GET['turma'];
-    $turno = $_GET['turno'];
-    $serie = $_GET['serie'];
-    require_once "conexao.php";
-    $resultado_turno = mysql_query("SELECT * FROM turnos ORDER BY 'turno'");
-    $resultado_serie = mysql_query("SELECT * FROM series ORDER BY 'serie'");
+    $nome_turma = $_GET['nome_turma'];
+    $nome_turno = $_GET['nome_turno'];
+    $nome_serie = $_GET['nome_serie'];
+    $resultado_turno = mysql_query("SELECT * FROM turnos where login='$login' ORDER BY 'nome_turno'");
+    $resultado_serie = mysql_query("SELECT * FROM series where login='$login' ORDER BY 'nome_serie'");
 ?>
 
   <body>
-        <form method="post" action="dao_turma/update_turma.php">
-
-        <div class="form-group">
-            <label for="exampleInputEmail7">Id Turma</label>
-            <input type="number" class="form-control" name="id_turma" value="<?php echo htmlspecialchars($id_turma);?>" style='background: #EEE; cursor: not-allowed; color: #777' readonly>
-        </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Turma</h1>
+
+          <form method="post" action="dao_turma/update_turma.php">
+
+          <div class="form-group">
+            <input type="hidden" class="form-control" name="id_turma" value="<?php echo htmlspecialchars($id_turma);?>">
+          </div>
+
         	 <div class="form-group">
             <label>Turma</label><br>
-            <select name="turma" class="select form-control">
-              <option value="<?php echo htmlspecialchars($turma);?>" disabled selected><?php echo htmlspecialchars($turma);?></option>
+            <select name="nome_turma" class="select form-control" required>
+              <option value="<?php echo htmlspecialchars($nome_turma);?>" selected><?php echo htmlspecialchars($nome_turma);?></option>
               <option value="A">A</option>
               <option value="B">B</option>
               <option value="C">C</option>
@@ -53,11 +56,11 @@
 
         <div class="form-group">
          <label>Turno</label><br>
-          <select name="turno" class="select form-control">
-            <option value="<?php echo htmlspecialchars($turno);?>" disabled selected><?php echo htmlspecialchars($turno);?></option>
+          <select name="nome_turno" class="select form-control" required>
+            <option value="<?php echo htmlspecialchars($nome_turno);?>" selected><?php echo htmlspecialchars($nome_turno);?></option>
             <?php
               while($linhas = mysql_fetch_array($resultado_turno)){
-                $turnoList = $linhas['turno'];
+                $turnoList = $linhas['nome_turno'];
                 echo '<option value="'.$turnoList.'">'.$turnoList.'</option>';
               }
             ?>
@@ -66,11 +69,11 @@
 
         <div class="form-group">
          <label>Série</label><br>
-          <select name="serie" class="select form-control">
-            <option value="<?php echo htmlspecialchars($serie);?>" disabled selected><?php echo htmlspecialchars($serie);?></option>
+          <select name="nome_serie" class="select form-control" required>
+            <option value="<?php echo htmlspecialchars($nome_serie);?>" selected><?php echo htmlspecialchars($nome_serie);?></option>
             <?php
               while($linhas = mysql_fetch_array($resultado_serie)){
-                $serieList = $linhas['serie'];
+                $serieList = $linhas['nome_serie'];
                 echo '<option value="'.$serieList.'">'.$serieList.'</option>';
               }
             ?>
@@ -80,6 +83,6 @@
             <button type="submit" class="btn btn-info">Salvar</button>
             <button class="btn btn-danger" type="reset">Limpar</button>
         
-        </div>
         </form>
+        </div>
 </body>

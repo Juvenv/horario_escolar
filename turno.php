@@ -1,8 +1,10 @@
 
 <?php
-  include "templates.php";
-  require_once "conexao.php";
-  $resultado = mysql_query("SELECT * FROM turnos ORDER BY 'turno'");
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = ''.$_SESSION['login'];
+  include_once "templates.php";
+  $resultado = mysql_query("SELECT * FROM turnos where login = '$login' ORDER BY 'nome_turno'");
 ?>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -28,13 +30,14 @@
             <tbody>
         <?php
           while($linhas = mysql_fetch_array($resultado)){
-              $turno = $linhas['turno'];
-              $quantidade_de_Aulas = $linhas['quantidade_de_Aulas'];
+              $id_turno = $linhas['id_turno'];
+              $nome_turno = $linhas['nome_turno'];
+              $quantidade_de_aulas = $linhas['quantidade_de_aulas'];
               echo "<tr>";
-              echo "<td>".$turno."</td>";
-              echo "<td>".$quantidade_de_Aulas."</td>";
-              echo "<td><a href='form_turno_update.php?turno=$turno&quantidade_de_Aulas=$quantidade_de_Aulas' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_turno/delete_turno.php?turno=$turno' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td>".$nome_turno."</td>";
+              echo "<td>".$quantidade_de_aulas."</td>";
+              echo "<td><a href='form_turno_update.php?id_turno=$id_turno&nome_turno=$nome_turno&quantidade_de_aulas=$quantidade_de_aulas' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
+              echo "<td><a href='dao_turno/delete_turno.php?id_turno=$id_turno' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>

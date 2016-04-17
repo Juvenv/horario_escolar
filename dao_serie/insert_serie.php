@@ -1,25 +1,27 @@
 
 <?php
 
-  require_once "../conexao.php";
-  $serie = $_POST['serie'];
+  include_once '../seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  $nome_serie = $_POST['nome_serie'];
   $sigla_disciplina = $_POST['sigla_disciplina'];
-  $aulasPorDisciplina = $_POST['aulasPorDisciplina'];
+  $aulas_por_disciplina = $_POST['aulas_por_disciplina'];
 
-  if(empty($serie)){
-    echo "<script>alert('Preencha todos os campos para cadastrar.');</script>";
+  $validacaoIquais = mysql_fetch_assoc(mysql_query("select * from series where nome_serie='$nome_serie' and login='$login'"));
+  if (!empty($validacaoIquais)) {
+    echo "<script>alert('Série já Existe.'); window.location.href='../serie.php';</script>";
   }
-  elseif(empty($sigla_disciplina)){
-    echo "<script>alert('Preencha todos os campos para cadastrar.');</script>";
+  else {
+    mysql_query("insert into series (nome_serie, login) values ('$nome_serie', '$login')");
+    $serie = mysql_fetch_assoc(mysql_query("select * from series where nome_serie='$nome_serie' and login='$login'"));
+    $id_serie = $serie['id_serie'];
+    foreach (array_combine($sigla_disciplina, $aulas_por_disciplina) as $sigla => $aulas) {
+        $siglaList = mysql_fetch_assoc(mysql_query("select * from disciplinas where sigla_disciplina='$sigla' and login='$login'"));
+        $id_disciplina = $siglaList['id_disciplina'];
+        mysql_query("insert into disciplinas_por_serie (id_serie, id_disciplina, aulas_por_disciplina, login) values ('$id_serie', '$id_disciplina', '$aulas', '$login')");
+    }
+    echo "<script>alert('Cadastrado com Sucesso.'); window.location.href='../serie.php';</script>";
   }
-  elseif(empty($aulasPorDisciplina)){
-    echo "<script>alert('Preencha todos os campos para cadastrar.');</script>";
-  }
-  else{
-      mysql_query("insert into series (serie) values ('$serie')");
-      foreach (array_combine($sigla_disciplina, $aulasPorDisciplina) as $sigla => $aulas) {
-          mysql_query("insert into disciplinas_por_serie (serie, sigla_disciplina, aulasPorDisciplina) values ('$serie', '$sigla', '$aulas')");
-      }
-      echo "<script>alert('Cadastrado com Sucesso.'); window.location.href='../serie.php';</script>";
-  }
+
 ?>

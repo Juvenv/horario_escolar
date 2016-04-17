@@ -1,8 +1,10 @@
 
 <?php
-  include "templates.php";
-  require_once "conexao.php";
-  $resultado = mysql_query("SELECT * FROM disciplinas ORDER BY 'disciplina'");
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  include_once "templates.php";
+  $resultado = mysql_query("SELECT * FROM disciplinas where login='$login' ORDER BY 'nome_disciplina'");
 ?>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -28,13 +30,14 @@
             <tbody>
         <?php
           while($linhas = mysql_fetch_array($resultado)){
+              $id_disciplina = $linhas['id_disciplina'];
               $sigla_disciplina = $linhas['sigla_disciplina'];
-              $disciplina = $linhas['disciplina'];
+              $nome_disciplina = $linhas['nome_disciplina'];
               echo "<tr>";
               echo "<td>".$sigla_disciplina."</td>";
-              echo "<td>".$disciplina."</td>";
-              echo "<td><a href='form_disciplina_update.php?sigla_disciplina=$sigla_disciplina&disciplina=$disciplina' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_disciplina/delete_disciplina.php?sigla_disciplina=$sigla_disciplina' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td>".$nome_disciplina."</td>";
+              echo "<td><a href='form_disciplina_update.php?id_disciplina=$id_disciplina&sigla_disciplina=$sigla_disciplina&nome_disciplina=$nome_disciplina' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
+              echo "<td><a href='dao_disciplina/delete_disciplina.php?id_disciplina=$id_disciplina' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>

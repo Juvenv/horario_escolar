@@ -1,18 +1,33 @@
 
 <?php 
-  include "templates.php"; 
-  $matricula = $_GET['matricula'];
+
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  include_once "templates.php";
+  $nome_professor = $_GET['nome_professor'];
+  $resultado_professor = mysql_query("SELECT * FROM docentes where login='$login' ORDER BY 'nome_professor'");
+
 ?>
  
  <body>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-2 main">
           <h1 class="page-header">Restrição de Horário</h1>
 
         <form method="post" action="dao_restricoes/update_restricoes.php" >
+
           <div class="form-group">
-            <label for="exampleInputEmail7">Matrícula</label><br>
-            <input type="number" class="form-control" name="matricula" value="<?php echo htmlspecialchars($matricula);?>" style='background: #EEE; cursor: not-allowed; color: #777' readonly>
+          <label>Professor</label><br>
+          <select name="nome_professor" class="select form-control">
+            <option value="<?php echo htmlspecialchars($nome_professor);?>" selected><?php echo htmlspecialchars($nome_professor);?></option>
+            <?php
+              while($linhas = mysql_fetch_array($resultado_professor)){
+                $docenteList = $linhas['nome_professor'];
+                echo '<option value="'.$docenteList.'">'.$docenteList.'</option>';
+              }
+            ?>
+          </select>
           </div>
 
           <div class="form-group">
@@ -27,55 +42,41 @@
                 <th>Quarta-Feira</th>
                 <th>Quinta-Feira</th>
                 <th>Sexta-Feira</th>
-                <th>Sábado</th>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="211">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="311">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="411">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="511">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="611">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="711">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2M1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3M1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4M1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5M1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6M1">1º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="212">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="312">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="412">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="512">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="612">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="712">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2M2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3M2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4M2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5M2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6M2">2º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="213">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="313">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="413">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="513">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="613">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="713">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2M3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3M3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4M3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5M3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6M3">3º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="214">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="314">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="414">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="514">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="614">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="714">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2M4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3M4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4M4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5M4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6M4">4º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="215">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="315">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="415">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="515">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="615">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="715">5º Horário</label><br></td>
-              </tr>
-              <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="216">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="316">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="416">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="516">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="616">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="716">6º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2M5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3M5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4M5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5M5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6M5">5º Horário</label><br></td>
               </tr>
               <tr>
                 <th colspan="6" class="bg-success">Vespetino</th>
@@ -86,55 +87,41 @@
                 <th>Quarta-Feira</th>
                 <th>Quinta-Feira</th>
                 <th>Sexta-Feira</th>
-                <th>Sábado</th>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="221">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="321">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="421">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="521">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="621">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="721">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2T1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3T1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4T1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5T1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6T1">1º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="222">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="322">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="422">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="522">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="622">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="722">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2T2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3T2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4T2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5T2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6T2">2º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="223">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="323">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="423">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="523">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="623">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="723">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2T3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3T3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4T3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5T3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6T3">3º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="224">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="324">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="424">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="524">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="624">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="724">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2T4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3T4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4T4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5T4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6T4">4º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="225">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="325">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="425">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="525">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="625">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="725">5º Horário</label><br></td>  
-              </tr>
-              <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="226">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="326">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="426">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="526">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="626">6º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="726">6º Horário</label><br></td>  
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2T5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3T5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4T5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5T5">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6T5">5º Horário</label><br></td> 
               </tr>
               <tr>
                 <th colspan="6" class="bg-success">Noturno</th>
@@ -145,47 +132,34 @@
                 <th>Quarta-Feira</th>
                 <th>Quinta-Feira</th>
                 <th>Sexta-Feira</th>
-                <th>Sábado</th>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="231">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="331">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="431">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="531">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="631">1º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"   value="731">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="2N1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="3N1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="4N1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="5N1">1º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="6N1">1º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="232">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="332">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="432">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="532">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="632">2º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="732">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="2N2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="3N2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="4N2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="5N2">2º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]"  value="6N2">2º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="233">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="333">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="433">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="533">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="633">3º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="733">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2N3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3N3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4N3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5N3">3º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6N3">3º Horário</label><br></td>
               </tr>
               <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="234">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="334">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="434">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="534">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="634">4º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="734">4º Horário</label><br></td>
-              </tr>
-              <tr>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="235">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="335">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="435">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="535">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="635">5º Horário</label><br></td>
-                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="735">5º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="2N4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="3N4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="4N4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="5N4">4º Horário</label><br></td>
+                <td><label class="checkbox-inline"><input type="checkbox" name="horario_inviavel[]" value="6N4">4º Horário</label><br></td>
               </tr>
           </table>
           </div>
@@ -194,6 +168,5 @@
 	         <button class="btn btn-danger" type="reset">Limpar</button>
   	   </form>
     </div>
-	
   </body>
-</html>
+

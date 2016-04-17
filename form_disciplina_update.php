@@ -1,23 +1,34 @@
 
 <?php
-    include "templates.php";
+    include_once 'seguranca.php';
+    protegePagina();
+    $login = $_SESSION['login'];
+    include_once "templates.php";
+    $id_disciplina = $_GET['id_disciplina'];
     $sigla_disciplina = $_GET['sigla_disciplina'];
-    $disciplina = $_GET['disciplina'];
+    $nome_disciplina = $_GET['nome_disciplina'];
 ?>
 
   <body>
-        <form method="post" action="dao_disciplina/update_disciplina.php">
+        
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Disciplina</h1>
-        	 <div class="form-group">
+
+        <form method="post" action="dao_disciplina/update_disciplina.php">
+
+        <div class="form-group">
+                <input type="hidden" class="form-control" name="id_disciplina" value="<?php echo htmlspecialchars($id_disciplina);?>">
+        </div>
+
+       	 <div class="form-group">
         		<label for="exampleInputEmail1">Sigla da Disciplina</label>
-        		<input type="text" class="form-control" name="sigla_disciplina" value="<?php echo htmlspecialchars($sigla_disciplina);?>" style='background: #EEE; cursor: not-allowed; color: #777' readonly>
+        		<input type="text" class="form-control" name="sigla_disciplina" value="<?php echo htmlspecialchars($sigla_disciplina);?>">
         </div>
 
         <div class="form-group">
          <label>Disciplina</label><br>
-          <select name="disciplina" class="select form-control">
-            <option value="<?php echo htmlspecialchars($disciplina);?>" disabled selected><?php echo htmlspecialchars($disciplina);?></option>
+          <select name="nome_disciplina" class="select form-control" required>
+            <option value="<?php echo htmlspecialchars($nome_disciplina);?>" selected><?php echo htmlspecialchars($nome_disciplina);?></option>
             <option value='Português'>Português</option>
             <option value='Matemática'>Matemática</option>
             <option value="Historia">História</option>
