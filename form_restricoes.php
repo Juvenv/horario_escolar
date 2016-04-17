@@ -18,12 +18,13 @@
 
         <div class="form-group">
           <label>Professor</label><br>
-          <select name="nome_professor" class="select form-control">
-            <option value="" disabled selected>Informe o Nome do Professor</option>
+          <select name="matricula" class="select form-control">
+            <option value="" disabled selected>Informe a Matricula do Professor</option>
             <?php
               while($linhas = mysql_fetch_array($resultado_professor)){
-                $docenteList = $linhas['nome_professor'];
-                echo '<option value="'.$docenteList.'">'.$docenteList.'</option>';
+                $docenteList = $linhas['matricula'].' - '.$linhas['nome_professor'];
+                $docenteMatricula = $linhas['matricula'];
+                echo '<option value="'.$docenteMatricula.'">'.$docenteList.'</option>';
               }
             ?>
           </select>

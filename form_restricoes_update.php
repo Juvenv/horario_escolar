@@ -5,6 +5,8 @@
   protegePagina();
   $login = $_SESSION['login'];
   include_once "templates.php";
+  $id_docente = $_GET['id_docente'];
+  $matricula = $_GET['matricula'];
   $nome_professor = $_GET['nome_professor'];
   $resultado_professor = mysql_query("SELECT * FROM docentes where login='$login' ORDER BY 'nome_professor'");
 
@@ -17,14 +19,19 @@
 
         <form method="post" action="dao_restricoes/update_restricoes.php" >
 
+        <div class="form-group">
+          <input name='id_docente' value="<?php echo htmlspecialchars($id_docente);?>" type="hidden"></input>
+        </div>
+
           <div class="form-group">
           <label>Professor</label><br>
-          <select name="nome_professor" class="select form-control">
-            <option value="<?php echo htmlspecialchars($nome_professor);?>" selected><?php echo htmlspecialchars($nome_professor);?></option>
+          <select name="matricula" class="select form-control">
+            <option value="<?php echo htmlspecialchars($matricula);?>" selected><?php echo htmlspecialchars($matricula).' - '.htmlspecialchars($nome_professor);?></option>
             <?php
               while($linhas = mysql_fetch_array($resultado_professor)){
-                $docenteList = $linhas['nome_professor'];
-                echo '<option value="'.$docenteList.'">'.$docenteList.'</option>';
+                $docenteList = $linhas['matricula'].' - '.$linhas['nome_professor'];
+                $docenteMatricula = $linhas['matricula'];
+                echo '<option value="'.$docenteMatricula.'">'.$docenteList.'</option>';
               }
             ?>
           </select>

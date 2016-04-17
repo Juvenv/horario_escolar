@@ -11,7 +11,7 @@
   $data_contratacao = date('Y-m-d', strtotime(str_replace('-', '/', $_POST['data_contratacao'])));
 	$sigla_disciplina = $_POST['sigla_disciplina'];
 
-  $validacaoIquais = mysql_fetch_assoc(mysql_query("select * from docentes where matricula='$matricula' and nome_professor='$nome_professor' and login='$login'"));
+  $validacaoIquais = mysql_fetch_assoc(mysql_query("select * from docentes where matricula='$matricula' and nome_professor='$nome_professor' and id_docente!='$id_docente' and login='$login'"));
   if (!empty($validacaoIquais)) {
     echo "<script>alert('Docente já Existe.'); window.location.href='../docente.php';</script>";
   }

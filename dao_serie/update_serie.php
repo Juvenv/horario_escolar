@@ -9,7 +9,7 @@
 	$sigla_disciplina = $_POST['sigla_disciplina'];
 	$aulas_por_disciplina = $_POST['aulas_por_disciplina'];
 
-  $validacaoIquais = mysql_fetch_assoc(mysql_query("select * from series where nome_serie='$nome_serie' and login='$login'"));
+  $validacaoIquais = mysql_fetch_assoc(mysql_query("select * from series where nome_serie='$nome_serie' and id_serie!='$id_serie' and login='$login'"));
   if (!empty($validacaoIquais)) {
     echo "<script>alert('Série já Existe.'); window.location.href='../serie.php';</script>";
   }

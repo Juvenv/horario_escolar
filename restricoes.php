@@ -35,6 +35,7 @@
           while($linhas = mysql_fetch_array($resultado)) {
               $id_docente = $linhas['id_docente'];
               $professor = mysql_fetch_array(mysql_query("SELECT * FROM docentes where id_docente='$id_docente' and login='$login'"));
+              $matricula = $professor['matricula'];
               $nome_professor = $professor['nome_professor'];
               $horario = mysql_query("SELECT * FROM restricoes where id_docente='$id_docente' and login='$login'");
               $aulas = array();
@@ -46,7 +47,7 @@
                 echo "<tr>";
                 echo "<td>".$nome_professor."</td>";
                 echo "<td>".$horario_inviavel."</td>";
-                echo "<td><a href='form_restricoes_update.php?nome_professor=$nome_professor' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
+                echo "<td><a href='form_restricoes_update.php?id_docente=$id_docente&matricula=$matricula&nome_professor=$nome_professor' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
                 echo "<td><a href='dao_restricoes/delete_restricoes.php?id_docente=$id_docente' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
                 echo "</tr>";
                 $count = $nome_professor;
