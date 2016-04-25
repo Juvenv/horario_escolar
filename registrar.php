@@ -20,6 +20,5 @@
   }
   else{
   	echo "<script>alert('Senha Incorreta.'); window.location.href='index.php';</script>";
-
-  }      
+  }
 ?>

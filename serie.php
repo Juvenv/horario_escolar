@@ -6,6 +6,9 @@
   include_once "templates.php";
   $resultado = mysql_query("SELECT * FROM series where login='$login' ORDER BY 'nome_serie'");
 ?>
+    
+    <body>
+
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Serie</h1>
       </div>
@@ -27,7 +30,7 @@
                   <th>Excluir Cadastro</th>
               </tr>
             </thead>
-            <tbody>
+
         <?php
           while($linhas = mysql_fetch_array($resultado)){
               $id_serie = $linhas['id_serie'];
@@ -37,18 +40,24 @@
               while ($aux = mysql_fetch_array($disciplinas)) {
                 $id_disciplina = $aux['id_disciplina'];
                 $aux2 = mysql_fetch_array(mysql_query("SELECT * FROM disciplinas where id_disciplina='$id_disciplina' and login='$login'"));
-                $aux3 = $aux2['sigla_disciplina'];
+                $aux3 = $aux2['sigla_disciplina'].' - '.$aux['aulas_por_disciplina'].' Aulas';
                 array_push($sigla, $aux3);
               }
               $sigla_disciplina = implode('<br/>', $sigla);
               $turma = mysql_query("SELECT * FROM turmas where id_serie='$id_serie' and login='$login'");
-              $turmas = array();
-              while ($aux = mysql_fetch_array($turma)) {
-                $id_turma = $aux['id_turma'];
-                $aux2 = $aux['nome_turma'];
-                array_push($turmas, $aux2);
+              $naoTurma = mysql_num_rows($turma);
+              if ($naoTurma > 0){
+                $turmas = array();
+                while ($aux = mysql_fetch_array($turma)) {
+                  $id_turma = $aux['id_turma'];
+                  $aux2 = $aux['nome_turma'];
+                  array_push($turmas, $aux2);
+                }
+                $nome_turma = implode('<br/>', $turmas);
               }
-              $nome_turma = implode('<br/>', $turmas);
+              else {
+                $nome_turma = 'Série sem Turmas';
+              }
               echo "<tr>";
               echo "<td>".$nome_serie."</td>";
               echo "<td>".$sigla_disciplina."</td>";
@@ -58,8 +67,9 @@
               echo "</tr>";
             }
         ?>
-            </tbody>
+
         </table>
+    </body>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
     <script type="text/javascript">

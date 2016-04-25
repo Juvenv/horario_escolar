@@ -11,6 +11,10 @@
           <h1 class="page-header">Turno</h1>
       </div>
 
+    <body>
+
+      <form class="form-group">
+
           <table border="1" class="table table-striped" id='table'>
           <caption>
              <a href="form_turno.php" class="btn btn-primary">
@@ -43,6 +47,8 @@
         ?>
             </tbody>
         </table>
+      </form>
+    </body>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
     <script type="text/javascript">

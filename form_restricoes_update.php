@@ -5,11 +5,17 @@
   protegePagina();
   $login = $_SESSION['login'];
   include_once "templates.php";
-  $id_docente = $_GET['id_docente'];
-  $matricula = $_GET['matricula'];
-  $nome_professor = $_GET['nome_professor'];
-  $resultado_professor = mysql_query("SELECT * FROM docentes where login='$login' ORDER BY 'nome_professor'");
-
+  if (isset($_GET['id_docente'])){
+    $id_docente = $_GET['id_docente'];
+    $matricula = $_GET['matricula'];
+    $nome_professor = $_GET['nome_professor'];
+    $resultado_professor = mysql_query("SELECT * FROM docentes where login='$login' ORDER BY 'nome_professor'");
+  }
+  else{
+    echo "<script>alert('Acesso Feito de Forma Indevida.');</script>";
+    expulsaVisitante();
+  }
+  
 ?>
  
  <body>

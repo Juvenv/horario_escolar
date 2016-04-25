@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<?php include "templates.php";?>
+<?php
+  include_once 'seguranca.php';
+  protegePagina();
+  $login = $_SESSION['login'];
+  include_once "templates.php";
+?>
  
   <head>
   <meta http-equiv="Content-Type" content="text/html", charset="iso-8859-1" >
@@ -15,20 +20,16 @@
           <h1 class="page-header">Ajuda</h1>
 
 
-
 <div class="panel-group" id="accordion">
- 
-
- 
 
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        Turno</a>
+        Turno
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>
-    <div id="collapse1" class="panel-collapse collapse in">
+    <div id="collapse1" class="panel-collapse collapse">
       <div class="panel-body">Para o Cadastro de turno, o operador deve selecionar o(s) turno(s) na qual a escola funciona, além disso, deve informa a quantidade de aulas que aquele turno terá.
       <br><br>
       			Exemplo: <br/><br/>
@@ -36,14 +37,14 @@
       					&nbsp;&nbsp;&nbsp;&nbsp;	Quantidade de aulas: 5
       </div>
     </div>
-  </div>  
-
+  </div>
+  
 
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        Disciplina</a>
+        Disciplina
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>  
     <div id="collapse2" class="panel-collapse collapse">
@@ -60,10 +61,10 @@
   </div>
   
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-        Professor</a>
+        Professor
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>
     <div id="collapse3" class="panel-collapse collapse">
@@ -81,13 +82,11 @@
     </div>
   </div>
 
-
-
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-        Restrição de horário</a>
+        Restrição de horário
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>  
     <div id="collapse4" class="panel-collapse collapse">
@@ -95,11 +94,12 @@
     </div>
   </div>
 
+
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-        Série</a>
+        Série
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>  
     <div id="collapse5" class="panel-collapse collapse">
@@ -118,10 +118,10 @@
   </div>
 
     <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-        Turma</a>
+        Turma
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>  
     <div id="collapse6" class="panel-collapse collapse">
@@ -137,10 +137,10 @@
 
 
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse7">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
-        Gerar Horário</a>
+        Gerar Horário
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>  
     <div id="collapse7" class="panel-collapse collapse">
@@ -148,11 +148,12 @@
     </div>
   </div>
 
+
     <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse8">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">
-        Importante</a>
+        Importante
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
       </h4>
     </div>  
     <div id="collapse8" class="panel-collapse collapse">

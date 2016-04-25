@@ -42,7 +42,7 @@
 		
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="menu_principal.php"><?php echo "".$_SESSION['nome_usuario'];?></a></li>
+            <li><a href="form_usuario_update.php"><?php echo "".$_SESSION['nome_usuario'];?></a></li>
             <li><a href="sobre.php">Sobre</a></li>
 			      <li><a href="ajuda.php">Ajuda</a></li>
             <li><a href="index.php" onclick="<?php expulsaVisitante();?>">Sair</a></li>
@@ -62,7 +62,7 @@
             <li><a href="restricoes.php">Restrição de Horário</a></li>
             <li><a href="serie.php">Série</a></li>
    	        <li><a href="turma.php">Turma</a></li>
-            <li><a href="#">Gerar Horário</a></li>
+            <li><a href="informacoes_gerais.php">Gerar Horário</a></li>
           </ul>
         </div>
       </div>

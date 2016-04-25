@@ -10,7 +10,7 @@
 
 	$validacaoIquais = mysql_fetch_assoc(mysql_query("select * from disciplinas where sigla_disciplina='$sigla_disciplina' and id_disciplina!='id_disciplina' and login='$login'"));
   	if (!empty($validacaoIquais)) {
-    	echo "<script>alert('Disciplina já Existe.'); window.location.href='../serie.php';</script>";
+    	echo "<script>alert('Disciplina já Existe.'); window.location.href='../disciplina.php';</script>";
   	}
   	else {
   		mysql_query("Update disciplinas set sigla_disciplina='$sigla_disciplina', nome_disciplina='$nome_disciplina' WHERE id_disciplina='$id_disciplina' and login='$login'");

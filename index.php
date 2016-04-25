@@ -1,4 +1,9 @@
 
+<?php
+  #include_once 'seguranca.php';
+  #unset($_SESSION['login'], $_SESSION['senha'], $_SESSION['nome_usuario']);
+?>
+
 <!DOCTYPE html>
 <html>
   <head>

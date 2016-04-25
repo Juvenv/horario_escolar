@@ -32,7 +32,7 @@
 
          <div class="form-group">
           <label for="exampleInputPassword4">Restrições de Horário de Professor</label><br>
-          <table class="table table-hover" align="left">
+          <table class="table table-hover">
               <tr>
                 <th colspan="6" class="bg-success">Matutino</th>
               </tr>
