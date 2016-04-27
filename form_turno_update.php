@@ -4,9 +4,15 @@
     protegePagina();
     $login = ''.$_SESSION['login'];
     include_once "templates.php";
-    $id_turno = $_GET['id_turno'];
-    $nome_turno = $_GET['nome_turno'];
-    $quantidade_de_aulas = $_GET['quantidade_de_aulas'];
+    if (isset($_GET['id_turno'])){
+      $id_turno = $_GET['id_turno'];
+      $nome_turno = $_GET['nome_turno'];
+      $quantidade_de_aulas = $_GET['quantidade_de_aulas'];
+    }
+    else {
+      echo "<script>alert('Acesso Invalido.'); window.location.href='turno.php';</script>";
+    }
+    
 ?>
 
   <body>

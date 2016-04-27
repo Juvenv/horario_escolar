@@ -4,10 +4,16 @@
     protegePagina();
     $login = $_SESSION['login'];
     include_once "templates.php";
-    $id_serie = $_GET['id_serie'];
-    $nome_serie = $_GET['nome_serie'];
-    $resultado_sigla = mysql_query("SELECT * FROM disciplinas  where login='$login' ORDER BY 'sigla_disciplina'");
-    $resultado_sigla2 = mysql_query("SELECT * FROM disciplinas  where login='$login' ORDER BY 'sigla_disciplina'");
+    if (isset($_GET['id_serie'])){
+      $id_serie = $_GET['id_serie'];
+      $nome_serie = $_GET['nome_serie'];
+      $resultado_sigla = mysql_query("SELECT * FROM disciplinas  where login='$login' ORDER BY 'sigla_disciplina'");
+      $resultado_sigla2 = mysql_query("SELECT * FROM disciplinas  where login='$login' ORDER BY 'sigla_disciplina'");
+    }
+    else {
+      echo "<script>alert('Acesso Invalido.'); window.location.href='serie.php';</script>";
+    }
+    
 ?>
 
   <body>

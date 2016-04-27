@@ -57,7 +57,7 @@
               echo "<td>".$data_contratacao."</td>";
               echo "<td>".$sigla_disciplina."</td>";
               echo "<td><a href='form_docente_update.php?id_docente=$id_docente&matricula=$matricula&nome_professor=$nome_professor&carga_horaria=$carga_horaria&data_contratacao=$data_contratacao' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_docente/delete_docente.php?id_docente=$id_docente' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td><a href='dao_docente/delete_docente.php?id_docente=$id_docente' class='btn btn-danger' onclick=\"return confirm('Deseja excluir registro?');\"><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>

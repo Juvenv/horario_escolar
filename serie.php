@@ -63,7 +63,7 @@
               echo "<td>".$sigla_disciplina."</td>";
               echo "<td>".$nome_turma."</td>";
               echo "<td><a href='form_serie_update.php?id_serie=$id_serie&nome_serie=$nome_serie' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_serie/delete_serie.php?id_serie=$id_serie' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td><a href='dao_serie/delete_serie.php?id_serie=$id_serie' class='btn btn-danger' onclick=\"return confirm('Deseja excluir registro?');\"><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>

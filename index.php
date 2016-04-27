@@ -1,11 +1,7 @@
 
-<?php
-  #include_once 'seguranca.php';
-  #unset($_SESSION['login'], $_SESSION['senha'], $_SESSION['nome_usuario']);
-?>
-
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -13,6 +9,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
+
   <body>
 
     <div class="form">
@@ -29,7 +26,7 @@
           
           <form action="login.php" method="post">
           
-            <div class="field-wrap">
+          <div class="field-wrap">
             <label>
               Email<span class="req">*</span>
             </label>
@@ -43,7 +40,7 @@
             <input type="password" name='senha'required autocomplete="off" maxlength="50"/>
           </div>
           
-          <p class="forgot"><a href="#">Esqueceu sua senha?</a></p>
+          <p class="forgot"><a href="form_recuperar_senha.php">Esqueceu sua senha?</a></p>
           
           <button class="button button-block"/>Entrar</button>
           

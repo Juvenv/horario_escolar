@@ -3,12 +3,18 @@
 
 	include_once '../seguranca.php';
 	protegePagina();
-  $id_login = $_POST['id_login'];
-  $login = $_POST['login'];
-	$nome_usuario = $_POST['nome_usuario'];
-	$sobrenome_usuario = $_POST['sobrenome_usuario'];
-  $senha = $_POST['senha'];
-  $confirmacao_senha = $_POST['confirmacao_senha'];
+  if (isset($_POST['id_login'])){
+    $id_login = $_POST['id_login'];
+    $login = $_POST['login'];
+    $nome_usuario = $_POST['nome_usuario'];
+    $sobrenome_usuario = $_POST['sobrenome_usuario'];
+    $senha = $_POST['senha'];
+    $confirmacao_senha = $_POST['confirmacao_senha'];
+  }
+  else {
+    echo "<script>alert('Acesso Invalido.'); window.location.href='menu_principal.php';</script>";
+  }
+  
 
   if($senha == $confirmacao_senha){
     if (validaUsuario($login, $senha) and ($id_login != $login)){
@@ -25,7 +31,7 @@
       mysql_query("update series set login='$login' where login='$id_login'");
       mysql_query("update turnos set login='$login' where login='$id_login'");
       mysql_query("update turmas set login='$login' where login='$id_login'");
-      mysql_query("update usuarios set login='$login', senha='$senha', nome_usuario='$nome_usuario', sobrenome_usuario='$sobrenome_usuario' where login='$id_login'");
+      mysql_query("update usuarios set login='$login', senha=MD5('$senha'), nome_usuario='$nome_usuario', sobrenome_usuario='$sobrenome_usuario' where login='$id_login'");
       validaUsuario($login, $senha);
       echo "<script> alert('Alterado com Sucesso.'); window.location.href='../menu_principal.php';</script>";
     }

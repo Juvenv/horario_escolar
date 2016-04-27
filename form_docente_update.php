@@ -5,13 +5,19 @@
   protegePagina();
   $login = $_SESSION['login'];
   include_once "templates.php";
-  $id_docente = $_GET['id_docente'];
-  $matricula = $_GET['matricula'];
-  $nome_professor = $_GET['nome_professor'];
-  $carga_horaria = $_GET['carga_horaria'];
-  $data_contratacao = $_GET['data_contratacao'];
-  $resultado_sigla = mysql_query("SELECT * FROM disciplinas where login='$login' ORDER BY 'sigla_disciplina'");
-  $resultado_sigla2 = mysql_query("SELECT * FROM disciplinas where login='$login' ORDER BY 'sigla_disciplina'");
+  if (isset($_GET['id_docente'])){
+    $id_docente = $_GET['id_docente'];
+    $matricula = $_GET['matricula'];
+    $nome_professor = $_GET['nome_professor'];
+    $carga_horaria = $_GET['carga_horaria'];
+    $data_contratacao = $_GET['data_contratacao'];
+    $resultado_sigla = mysql_query("SELECT * FROM disciplinas where login='$login' ORDER BY 'sigla_disciplina'");
+    $resultado_sigla2 = mysql_query("SELECT * FROM disciplinas where login='$login' ORDER BY 'sigla_disciplina'");
+  }
+  else {
+    echo "<script>alert('Acesso Invalido.'); window.location.href='docente.php';</script>";
+  }
+  
 
 ?>
 

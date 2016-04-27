@@ -44,7 +44,7 @@
               echo "<td>".$nome_turno."</td>";
               echo "<td>".$nome_serie."</td>";
               echo "<td><a href='form_turma_update.php?id_turma=$id_turma&nome_turma=$nome_turma&nome_turno=$nome_turno&nome_serie=$nome_serie' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_turma/delete_turma.php?id_turma=$id_turma' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td><a href='dao_turma/delete_turma.php?id_turma=$id_turma' class='btn btn-danger' onclick=\"return confirm('Deseja excluir registro?');\"><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>

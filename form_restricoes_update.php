@@ -11,9 +11,8 @@
     $nome_professor = $_GET['nome_professor'];
     $resultado_professor = mysql_query("SELECT * FROM docentes where login='$login' ORDER BY 'nome_professor'");
   }
-  else{
-    echo "<script>alert('Acesso Feito de Forma Indevida.');</script>";
-    expulsaVisitante();
+  else {
+    echo "<script>alert('Acesso Invalido.'); window.location.href='retricoes.php';</script>";
   }
   
 ?>

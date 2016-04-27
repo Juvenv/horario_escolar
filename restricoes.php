@@ -48,7 +48,7 @@
                 echo "<td>".$nome_professor."</td>";
                 echo "<td>".$horario_inviavel."</td>";
                 echo "<td><a href='form_restricoes_update.php?id_docente=$id_docente&matricula=$matricula&nome_professor=$nome_professor' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-                echo "<td><a href='dao_restricoes/delete_restricoes.php?id_docente=$id_docente' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+                echo "<td><a href='dao_restricoes/delete_restricoes.php?id_docente=$id_docente' class='btn btn-danger' onclick=\"return confirm('Deseja excluir registro?');\"><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
                 echo "</tr>";
                 $count = $nome_professor;
               }

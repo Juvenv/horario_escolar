@@ -4,12 +4,18 @@
     protegePagina();
     $login = $_SESSION['login'];
     include_once "templates.php";
-    $id_turma = $_GET['id_turma'];
-    $nome_turma = $_GET['nome_turma'];
-    $nome_turno = $_GET['nome_turno'];
-    $nome_serie = $_GET['nome_serie'];
-    $resultado_turno = mysql_query("SELECT * FROM turnos where login='$login' ORDER BY 'nome_turno'");
-    $resultado_serie = mysql_query("SELECT * FROM series where login='$login' ORDER BY 'nome_serie'");
+    if (isset($_GET['id_turma'])){
+      $id_turma = $_GET['id_turma'];
+      $nome_turma = $_GET['nome_turma'];
+      $nome_turno = $_GET['nome_turno'];
+      $nome_serie = $_GET['nome_serie'];
+      $resultado_turno = mysql_query("SELECT * FROM turnos where login='$login' ORDER BY 'nome_turno'");
+      $resultado_serie = mysql_query("SELECT * FROM series where login='$login' ORDER BY 'nome_serie'");
+    }
+    else {
+      echo "<script>alert('Acesso Invalido.'); window.location.href='turma.php';</script>";
+    }
+    
 ?>
 
   <body>

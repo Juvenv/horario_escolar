@@ -11,7 +11,7 @@
 	require_once "conexao.php";
 
 	function validaUsuario($login, $senha) {
-	  	$resultado = mysql_fetch_assoc(mysql_query("select * from usuarios where login='$login' and senha='$senha'"));
+	  	$resultado = mysql_fetch_assoc(mysql_query("select * from usuarios where login='$login' and senha=MD5('$senha')"));
 	    if (empty($resultado)) {
 	    	return false;
 	    }

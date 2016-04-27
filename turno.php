@@ -41,7 +41,7 @@
               echo "<td>".$nome_turno."</td>";
               echo "<td>".$quantidade_de_aulas."</td>";
               echo "<td><a href='form_turno_update.php?id_turno=$id_turno&nome_turno=$nome_turno&quantidade_de_aulas=$quantidade_de_aulas' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_turno/delete_turno.php?id_turno=$id_turno' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td><a href='dao_turno/delete_turno.php?id_turno=$id_turno' class='btn btn-danger' onclick=\"return confirm('Deseja excluir registro?');\"><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>

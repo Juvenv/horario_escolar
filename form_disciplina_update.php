@@ -4,9 +4,15 @@
     protegePagina();
     $login = $_SESSION['login'];
     include_once "templates.php";
-    $id_disciplina = $_GET['id_disciplina'];
-    $sigla_disciplina = $_GET['sigla_disciplina'];
-    $nome_disciplina = $_GET['nome_disciplina'];
+    if (isset($_GET['id_disciplina'])){
+        $id_disciplina = $_GET['id_disciplina'];
+        $sigla_disciplina = $_GET['sigla_disciplina'];
+        $nome_disciplina = $_GET['nome_disciplina'];
+    }
+    else {
+        echo "<script>alert('Acesso Invalido.'); window.location.href='disciplina.php';</script>";
+    }
+    
 ?>
 
   <body>

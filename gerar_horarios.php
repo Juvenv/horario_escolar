@@ -1,5 +1,4 @@
 
-
 <?php
 
   include_once 'seguranca.php';
@@ -7,9 +6,15 @@
   $login = $_SESSION['login'];
   include_once "templates.php";
 
-  $turmas = $_POST['turmas'];
-  $turnos = $_POST['turnos'];
-  $disciplinas = $_POST['disciplinas'];
+  if (isset($_POST['turmas'])){
+    $turmas = $_POST['turmas'];
+    $turnos = $_POST['turnos'];
+    $disciplinas = $_POST['disciplinas'];  
+  }
+  else{
+    echo "<script>alert('Verifique se existem Turmas Cadastradas.'); window.location.href='informacoes_gerais.php';</script>";
+  }
+  
 
 ?>
 

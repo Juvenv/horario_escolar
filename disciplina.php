@@ -37,7 +37,7 @@
               echo "<td>".$sigla_disciplina."</td>";
               echo "<td>".$nome_disciplina."</td>";
               echo "<td><a href='form_disciplina_update.php?id_disciplina=$id_disciplina&sigla_disciplina=$sigla_disciplina&nome_disciplina=$nome_disciplina' class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span> Editar</a></td>";
-              echo "<td><a href='dao_disciplina/delete_disciplina.php?id_disciplina=$id_disciplina' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+              echo "<td><a href='dao_disciplina/delete_disciplina.php?id_disciplina=$id_disciplina' class='btn btn-danger' onclick=\"return confirm('Deseja excluir registro?');\"><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
               echo "</tr>";
             }
         ?>
