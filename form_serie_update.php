@@ -24,7 +24,6 @@
         <form method="post" action="dao_serie/update_serie.php">
 
           <div class="form-group">
-            <label for="exampleInputEmail7">Id Série</label>
             <input type="hidden" class="form-control" name="id_serie" value="<?php echo htmlspecialchars($id_serie);?>">
           </div>
            

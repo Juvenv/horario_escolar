@@ -2,7 +2,6 @@
 <?php 
   include_once 'seguranca.php';
   protegePagina();
-  $login = ''.$_SESSION['login'];
   include_once "templates.php";
 ?>
 

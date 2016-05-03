@@ -44,24 +44,24 @@
 	              $nome = array();
 	              $disciplinas_array = array();
 	              $numero_de_disciplinas = mysql_num_rows($disciplinas);
-	              $vagas = 0;
+	              $aulas_vagas = 0;
 	              while ($aux1 = mysql_fetch_array($disciplinas)) {
 	                $id_disciplina = $aux1['id_disciplina'];
 	                $aux2 = mysql_fetch_array(mysql_query("SELECT * FROM disciplinas where id_disciplina='$id_disciplina' and login='$login'"));
-	                $aux3 = $aux2['nome_disciplina'].'&nbsp;&nbsp;&nbsp;&nbsp;'.'Possui '.$aux1['aulas_por_disciplina'].' Aulas na Semana';
+	                $aux3 = '&nbsp;&nbsp;&nbsp;&nbsp;'.$aux2['nome_disciplina'].'&nbsp;&nbsp;&nbsp;&nbsp;'.'Possui '.$aux1['aulas_por_disciplina'].' Aulas na Semana';
 	                array_push($nome, $aux3);
 	                $count2 = 0;
 	                while ($count2 < $aux1['aulas_por_disciplina']){
-	                  array_push($disciplinas_array, $aux2['sigla_disciplina']);
+	                  array_push($disciplinas_array, $aux2['id_disciplina']);
 	                  $count2++;
 	                }
-	                $vagas += $aux1['aulas_por_disciplina'];
+	                $aulas_vagas += $aux1['aulas_por_disciplina'];
 	              }
 	              $nome_disciplina = implode('<br/>', $nome);
 
 
 	              $c = 0;
-	              while ($c < ($quantidade_de_aulas - $vagas)){
+	              while ($c < ($quantidade_de_aulas - $aulas_vagas)){
 	                array_push($disciplinas_array, '-');
 	                $c++;
 	              }
@@ -85,16 +85,30 @@
 	                          Quantidade de Aulas na Semana: '.$quantidade_de_aulas.'<br>
 	                          Quantidade de Disciplinas: '.$numero_de_disciplinas.'<br><br>
 	                          Disciplinas:<br><br>
-	                          &nbsp;&nbsp;&nbsp;&nbsp;'.$nome_disciplina.'<br><br>
+	                          '.$nome_disciplina.'<br><br>
 	                          <div class="pull-right">
-	                            Quantidade de Aulas Vagas: '.($quantidade_de_aulas - $vagas).'
+	                            Quantidade de Aulas Vagas: '.($quantidade_de_aulas - $aulas_vagas).'
 	                          </div>
 	                        </div>
 	                      </div>
 	                    </div>';
 	            $aux++;
 	            }
-	            echo '</div><button type="submit" class="btn btn-info btn-lg">Gerar Horário</button>';
+
+	            $aux_docentes = mysql_query("SELECT * FROM docentes where login='$login'");
+	            $array_docentes = array();
+	            while ($d = mysql_fetch_array($aux_docentes)){
+	            	$count3 = 0;
+	              	while ($count3 < $d['carga_horaria']){
+	              		array_push($array_docentes, $d['id_docente']);
+	              		$count3++;
+	              	}
+	            }
+	            $array2 = implode(';', $array_docentes);
+
+	            echo '</div>
+	            		<input name="docentes" type="hidden" value="'.$array2.'"></input>
+	            		<button type="submit" class="btn btn-info btn-lg">Gerar Horário</button>';
 	        }
         ?>
 

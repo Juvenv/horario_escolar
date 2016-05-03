@@ -1,4 +1,11 @@
 
+<?php
+  session_start();
+  if (isset($_SESSION['login'])){
+    session_unset($_SESSION['login'], $_SESSION['senha'], $_SESSION['nome_usuario'], $_SESSION['sobrenome_usuario']);
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 
