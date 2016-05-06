@@ -23,7 +23,7 @@
         	 
         	 <div class="form-group">
         		<label for="exampleInputPassword2">Quantidade de Aulas na Semana</label>
-        		<input type="number" class="form-control" name="quantidade_de_aulas" placeholder="Informe a Quantidade de Aulas que esse Turno possui na Semana" required>
+        		<input type="number" min="5" step="5" class="form-control" name="quantidade_de_aulas" placeholder="Informe a Quantidade de Aulas que esse Turno possui na Semana" required>
         	  </div>
 
 	           <button type="submit" class="btn btn-info">Salvar</button>

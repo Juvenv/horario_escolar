@@ -60,38 +60,42 @@
 	              $nome_disciplina = implode('<br/>', $nome);
 
 
-	              $c = 0;
-	              while ($c < ($quantidade_de_aulas - $aulas_vagas)){
-	                array_push($disciplinas_array, '-');
-	                $c++;
-	              }
-	              $array = implode(';', $disciplinas_array);
+	              if (($quantidade_de_aulas - $aulas_vagas) >= 0) {
+		              $c = 0;
+		              while ($c < ($quantidade_de_aulas - $aulas_vagas)){
+		                array_push($disciplinas_array, '-');
+		                $c++;
+		              }
+		              $array = implode(';', $disciplinas_array);
 
-
-	              echo '<div class="form-group">
-	                      <input name="turmas[]" type="hidden" value="'.$nome_serie.' - '.$nome_turma.'"></input>
-	                      <input name="turnos[]" type="hidden" value="'.$nome_turno.'"></input>
-	                      <input name="disciplinas[]" type="hidden" value="'.$array.'"></input>
-	                    </div>
-	                    <div class="panel panel-default">
-	                      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$aux.'">
-	                        '.$nome_serie.' - '.$nome_turma.'
-	                        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
-	                      </div>
-	                      <div class="panel-collapse collapse" id="collapse'.$aux.'">
-	                        <div class="panel-body">
-	                          <h4>Dados Gerais sobre está Turma:</h4><br>
-	                          Turno de Aulas: '.$nome_turno.'<br>
-	                          Quantidade de Aulas na Semana: '.$quantidade_de_aulas.'<br>
-	                          Quantidade de Disciplinas: '.$numero_de_disciplinas.'<br><br>
-	                          Disciplinas:<br><br>
-	                          '.$nome_disciplina.'<br><br>
-	                          <div class="pull-right">
-	                            Quantidade de Aulas Vagas: '.($quantidade_de_aulas - $aulas_vagas).'
-	                          </div>
-	                        </div>
-	                      </div>
-	                    </div>';
+		              echo '<div class="form-group">
+		                      <input name="turmas[]" type="hidden" value="'.$nome_serie.' - '.$nome_turma.'"></input>
+		                      <input name="turnos[]" type="hidden" value="'.$nome_turno.'"></input>
+		                      <input name="disciplinas[]" type="hidden" value="'.$array.'"></input>
+		                    </div>
+		                    <div class="panel panel-default">
+		                      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$aux.'">
+		                        '.$nome_serie.' - '.$nome_turma.'
+		                        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+		                      </div>
+		                      <div class="panel-collapse collapse" id="collapse'.$aux.'">
+		                        <div class="panel-body">
+		                          <h4>Dados Gerais sobre está Turma:</h4><br>
+		                          Turno de Aulas: '.$nome_turno.'<br>
+		                          Quantidade de Aulas na Semana: '.$quantidade_de_aulas.'<br>
+		                          Quantidade de Disciplinas: '.$numero_de_disciplinas.'<br><br>
+		                          Disciplinas:<br><br>
+		                          '.$nome_disciplina.'<br><br>
+		                          <div class="pull-right">
+		                            Quantidade de Aulas Vagas: '.($quantidade_de_aulas - $aulas_vagas).'
+		                          </div>
+		                        </div>
+		                      </div>
+		                    </div>';
+		           }
+		           else {
+		           		echo '<br>O '.$nome_serie.' - '.$nome_turma.' possui mais aulas que o permitido no turno '.$nome_turno.', verifique esse problema antes de gerar os Horários.<br>';
+		           }
 	            $aux++;
 	            }
 

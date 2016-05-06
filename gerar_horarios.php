@@ -115,28 +115,21 @@
                 <th class="bg-success">Sexta-Feira</th>
               </tr>
             </thead>';
-    $dias_da_semana = 0;
-    $aula = 0;
+    $dias_da_semana = 1;
+    $horario = 0;
     foreach ($disciplinas as $id_disciplina) {
       $dias_da_semana++;
-      if ($dias_da_semana == 1) {
-        $aula++;
-        echo '<tr><td class="bg-success">'.$aula.'º Horário</td><td>'.nome_disciplina($id_disciplina).'<br>'.nome_docente($leciona_disciplina[$id_disciplina]).'</td>';
+      if ($dias_da_semana == 2) {
+        $horario++;
+        echo '<tr><td class="bg-success">'.$horario.'º Horário</td><td>'.nome_disciplina($id_disciplina).'<br>'.nome_docente($leciona_disciplina[$id_disciplina]).'</td>';
       }
       else {
         echo '<td>'.nome_disciplina($id_disciplina).'<br>'.nome_docente($leciona_disciplina[$id_disciplina]).'</td>';
-        if ($dias_da_semana == 5){
+        if ($dias_da_semana == 6){
           echo '</tr>';
-          $dias_da_semana = 0;
+          $dias_da_semana = 1;
         }
       }
-    }
-    if ($dias_da_semana > 0){
-      while ($dias_da_semana < 5){
-        echo '<td>'.'-'.'</td>';
-        $dias_da_semana++;
-      }
-      echo '</tr>';
     }
     echo '</table>';
   }

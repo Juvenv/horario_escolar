@@ -34,7 +34,7 @@
 
         	 <div class="form-group">
         		<label for="exampleInputEmail7">Matrícula</label>
-        		<input type="number" class="form-control" name="matricula" value="<?php echo htmlspecialchars($matricula);?>" required>
+        		<input type="number" min="1" step="1" class="form-control" name="matricula" value="<?php echo htmlspecialchars($matricula);?>" required>
         	 </div>
         	 
         	 <div class="form-group">
@@ -44,7 +44,7 @@
         	  
         	  <div class="form-group">
         		<label for="exampleInputPassword2">Carga Horária Obrigatória</label>
-        		<input type="number" class="form-control" name="carga_horaria" value="<?php echo htmlspecialchars($carga_horaria);?>" required>
+        		<input type="number" min="1" step="1" class="form-control" name="carga_horaria" value="<?php echo htmlspecialchars($carga_horaria);?>" required>
         	  </div>
 
             <div class="form-group">

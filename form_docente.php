@@ -18,7 +18,7 @@
         	 
         	 <div class="form-group">
         		<label for="exampleInputEmail7">Matrícula</label>
-        		<input type="number" class="form-control" name="matricula" required placeholder="Informe sua matrícula">
+        		<input type="number" min="1" step="1" class="form-control" name="matricula" required placeholder="Informe sua matrícula">
         	  </div>
         	 
         	 <div class="form-group">
@@ -28,7 +28,7 @@
         	  
         	  <div class="form-group">
         		<label for="exampleInputPassword2">Carga Horária Obrigatória</label>
-        		<input type="number" class="form-control" name="carga_horaria" required placeholder="Informe a Quantidade de Aulas Obrigatórias Semanais">
+        		<input type="number" min="1" step="1" class="form-control" name="carga_horaria" required placeholder="Informe a Quantidade de Aulas Obrigatórias Semanais">
         	  </div>
 
               <div class="form-group">

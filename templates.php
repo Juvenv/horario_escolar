@@ -37,7 +37,7 @@
 		
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="form_usuario_update.php"><?php echo $_SESSION['nome_usuario'].' '.$_SESSION['sobrenome_usuario'];?></a></li>
+            <li><a href="form_usuario_update.php"><?php if (isset($_SESSION)) {echo $_SESSION['nome_usuario'].' '.$_SESSION['sobrenome_usuario'];}?></a></li>
             <li><a href="sobre.php">Sobre</a></li>
 			      <li><a href="ajuda.php">Ajuda</a></li>
             <li><a href="index.php">Sair</a></li>

@@ -38,7 +38,7 @@
 
              <div class="form-group">
                 <label for="exampleInputEmail1">Quantidade de Aulas na Semana</label>
-                <input type="text" class="form-control" name="quantidade_de_aulas" value="<?php echo htmlspecialchars($quantidade_de_aulas);?>" required>
+                <input type="number" min="5" step="5" class="form-control" name="quantidade_de_aulas" value="<?php echo htmlspecialchars($quantidade_de_aulas);?>" required>
         </div>
 
             <button type="submit" class="btn btn-info">Salvar</button>
