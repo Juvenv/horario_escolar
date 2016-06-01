@@ -25,10 +25,9 @@
             <option value="1º Grau">1º Grau</option>
             <option value="2º Grau">2º Grau</option>            
             <option value="3º Grau">3º Grau</option>
-            <option value="9º Ano - Noturno">9º Ano - Noturno</option>
-            <option value="1º Grau - Noturno">1º Grau - Noturno</option>
-            <option value="2º Grau - Noturno">2º Grau - Noturno</option>
-            <option value="3º Grau - Noturno">3º Grau - Noturno</option>
+            <option value="1º Grau Noturno">1º Grau Noturno</option>
+            <option value="2º Grau Noturno">2º Grau Noturno</option>
+            <option value="3º Grau Noturno">3º Grau Noturno</option>
           </select>
           </div>
 

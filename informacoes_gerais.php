@@ -11,11 +11,12 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/waitMe.css">
   </head>
   
   <body>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="titulo">
       <h1 class="page-header">Informações Gerais</h1>
 
       <form class="form-group" action="gerar_horarios.php" method="post">
@@ -48,7 +49,7 @@
 	              while ($aux1 = mysql_fetch_array($disciplinas)) {
 	                $id_disciplina = $aux1['id_disciplina'];
 	                $aux2 = mysql_fetch_array(mysql_query("SELECT * FROM disciplinas where id_disciplina='$id_disciplina' and login='$login'"));
-	                $aux3 = '&nbsp;&nbsp;&nbsp;&nbsp;'.$aux2['nome_disciplina'].'&nbsp;&nbsp;&nbsp;&nbsp;'.'Possui '.$aux1['aulas_por_disciplina'].' Aulas na Semana';
+	                $aux3 = '&nbsp;&nbsp;&nbsp;&nbsp;'.$aux2['nome_disciplina'].'&nbsp;&nbsp;&nbsp;&nbsp;'.'Possui <font color="red">'.$aux1['aulas_por_disciplina'].'</font> Aulas na Semana';
 	                array_push($nome, $aux3);
 	                $count2 = 0;
 	                while ($count2 < $aux1['aulas_por_disciplina']){
@@ -68,38 +69,38 @@
 		              }
 		              $array = implode(';', $disciplinas_array);
 
-		              echo '<div class="form-group">
+		              echo '<div class="form-group" id="container">
 		                      <input name="turmas[]" type="hidden" value="'.$nome_serie.' - '.$nome_turma.'"></input>
 		                      <input name="turnos[]" type="hidden" value="'.$nome_turno.'"></input>
 		                      <input name="disciplinas[]" type="hidden" value="'.$array.'"></input>
 		                    </div>
 		                    <div class="panel panel-default">
 		                      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$aux.'">
-		                        '.$nome_serie.' - '.$nome_turma.'
+		                        '.$nome_serie.' - '.$nome_turma.' ('.$nome_turno.')'.'
 		                        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
 		                      </div>
 		                      <div class="panel-collapse collapse" id="collapse'.$aux.'">
 		                        <div class="panel-body">
 		                          <h4>Dados Gerais sobre está Turma:</h4><br>
-		                          Turno de Aulas: '.$nome_turno.'<br>
-		                          Quantidade de Aulas na Semana: '.$quantidade_de_aulas.'<br>
-		                          Quantidade de Disciplinas: '.$numero_de_disciplinas.'<br><br>
+		                          Turno de Aulas: <font color="red">'.$nome_turno.'</font><br>
+		                          Quantidade de Aulas na Semana: <font color="red">'.$quantidade_de_aulas.'</font><br>
+		                          Quantidade de Disciplinas: <font color="red">'.$numero_de_disciplinas.'</font><br><br>
 		                          Disciplinas:<br><br>
 		                          '.$nome_disciplina.'<br><br>
 		                          <div class="pull-right">
-		                            Quantidade de Aulas Vagas: '.($quantidade_de_aulas - $aulas_vagas).'
+		                            Quantidade de Aulas Vagas: <font size="4" color="red">'.($quantidade_de_aulas - $aulas_vagas).'</font>
 		                          </div>
 		                        </div>
 		                      </div>
 		                    </div>';
 		           }
 		           else {
-		           		echo '<br>O '.$nome_serie.' - '.$nome_turma.' possui mais aulas que o permitido no turno '.$nome_turno.', verifique esse problema antes de gerar os Horários.<br>';
+		           		echo '<br><font color="red">O '.$nome_serie.' - '.$nome_turma.' possui mais aulas que o permitido no turno '.$nome_turno.', verifique esse problema antes de gerar os Horários.</font><br>';
 		           }
 	            $aux++;
 	            }
 
-	            $aux_docentes = mysql_query("SELECT * FROM docentes where login='$login'");
+	            $aux_docentes = mysql_query("SELECT * FROM docentes where login='$login' ORDER BY Date('data_contratacao') ASC");
 	            $array_docentes = array();
 	            while ($d = mysql_fetch_array($aux_docentes)){
 	            	$count3 = 0;
@@ -109,14 +110,50 @@
 	              	}
 	            }
 	            $array2 = implode(';', $array_docentes);
-
+	            
 	            echo '</div>
 	            		<input name="docentes" type="hidden" value="'.$array2.'"></input>
-	            		<button type="submit" class="btn btn-info btn-lg">Gerar Horário</button>';
+	            		<button type="submit" class="btn btn-info btn-lg" id="button_gerar">Gerar Horário</button>';
 	        }
         ?>
 
       </form>
     </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src="js/waitMe.js"></script>
+
+	<script>
+		$(function(){
+			// none, bounce, rotateplane, stretch, orbit, 
+			// roundBounce, win8, win8_linear or ios
+			var current_effect = 'roundBounce'; // 
+			$('#button_gerar').click(function() {
+			run_waitMe(current_effect);
+			});
+			function run_waitMe(effect){
+				$('#titulo').waitMe({
+				//none, rotateplane, stretch, orbit, roundBounce, win8, 
+				//win8_linear, ios, facebook, rotation, timer, pulse, 
+				//progressBar, bouncePulse or img
+				effect: 'roundBounce',
+				//place text under the effect (string).
+				text: 'Carregando...',
+				//background for container (string).
+				bg: 'rgba(255,255,255,0.7)',
+				//color for background animation and text (string).
+				color: '#000',
+				//change width for elem animation (string).
+				sizeW: '',
+				//change height for elem animation (string).
+				sizeH: '',
+				// url to image
+				source: '',
+				// callback
+				});
+			}
+		});
+	</script>
+
   </body>
 
