@@ -5,7 +5,7 @@
   protegePagina();
   include_once "templates.php";
   #require 'gerar_pdf.php';
-  require "gerar_pdf_table.php";
+  require "gerar_pdf.php";
 
   if (isset($_POST['turmas'])){
     $turmas = $_POST['turmas'];
@@ -32,20 +32,20 @@
     function getCromossomo(){
       return $this->cromossomo;
     }
-    function setCromossomo($cromossomo){
-      $this->cromossomo = $cromossomo;
+    function setCromossomo($cromossomoAux){
+      $this->cromossomo = $cromossomoAux;
     }
     function getAvaliacao() {
       return $this->avaliacao;
     }
-    function setAvaliacao($avaliacao) {
-      $this->avaliacao = $avaliacao;
+    function setAvaliacao($avaliacaoAux) {
+      $this->avaliacao = $avaliacaoAux;
     }
     function numero_aulas() {   # retorna o numero de aulas no cromossomo
       return count($this->getCromossomo(), 1) - 5;
     }
     function getQualidade(){
-      return (100 * $this->getAvaliacao()) / $this->numero_aulas();
+      return ((100 * $this->getAvaliacao()) / $this->numero_aulas());
     }
     function crossOver($pai) {  # O cromossomo deve ser de um individuo da mesma serie, turma e turno que o outro
       # Realiza o CrossOver por Ordem
@@ -100,26 +100,35 @@
       foreach ($this->getCromossomo() as $dia => $horas) {
         foreach ($horas as $hora => $horario) {
           #$id_docente = id_docente(str_replace("</font>", "", substr(strrchr($horario, '<br>'), 4)));
-          $id_docente = id_docente(substr(strrchr($horario, '<br>'), 4));
-          if ($id_docente != '') {
-            $result = mysql_query("SELECT * FROM restricoes where id_docente='$id_docente' and login='$login'");
-            if (mysql_num_rows($result) > 0) {
-              $premio = 1;
-              while ($aula = mysql_fetch_assoc($result)) {
-                $horarioFormat = ($dia+2).''.$letra_turno.''.$hora;
-                if ($aula['horario_inviavel'] == $horarioFormat) {
-                  $this->setAvaliacao($this->getAvaliacao() - 1);
-                  #$this->avaliacao = $this->avaliacao - 1;
-                  $premio = 0;
-                  break 1;
-                }
-              }
-              if ($premio == 1) {
-                $this->setAvaliacao($this->getAvaliacao() + 1);
-                #$this->avaliacao = $this->avaliacao + 1;
-              }
-            }
-          }
+          if ($horario != '-') {
+	          $id_docente = id_docente(substr(strrchr($horario, '<br>'), 4));
+	          $diaMaisDois = $dia + 2;
+	          $horarioFormat = $diaMaisDois.''.$letra_turno.''.$hora;
+	          if ($id_docente != '') {
+	            $result = mysql_query("SELECT * FROM restricoes where id_docente='$id_docente' and login='$login'");
+	            if (mysql_num_rows($result) > 0) {
+	              $premio = 1;
+	              while ($aula = mysql_fetch_assoc($result)) {
+	                if ($aula['horario_inviavel'] == $horarioFormat) {
+	                  $this->setAvaliacao($this->getAvaliacao() - 1);
+	                  #$this->avaliacao = $this->avaliacao - 1;
+	                  $premio = 0;
+	                  break 1;
+	                }
+	              }
+	              if ($premio == 1) {
+	                $this->setAvaliacao($this->getAvaliacao() + 1);
+	                #$this->avaliacao = $this->avaliacao + 1;
+	              }
+	            }
+	            else {
+	            	$this->setAvaliacao($this->getAvaliacao() + 1);
+	            }
+	          }
+	          else {
+	          	$this->setAvaliacao($this->getAvaliacao() + 1);
+	          }
+	      }
           else {
             $this->setAvaliacao($this->getAvaliacao() + 1);
             #$this->avaliacao = $this->avaliacao + 1;
@@ -131,46 +140,48 @@
       # A diferença desse metodo, é que são adcionadas cores vermelhas nos horarios para mostrar quando quebra uma regra de restrição
       $login = $_SESSION['login'];
       $letra_turno = substr($turno, 0, 1);
-      $nada = 0;
-      $premioAux = 0;
-      $iqual = 0;
       foreach ($this->getCromossomo() as $dia => $horas) {
         foreach ($horas as $hora => $horario) {
           #$id_docente = id_docente(str_replace("</font>", "", substr(strrchr($horario, '<br>'), 4)));
-          $id_docente = id_docente(substr(strrchr($horario, '<br>'), 4));
-          if ($id_docente != '') {
-            $result = mysql_query("SELECT * FROM restricoes where id_docente='$id_docente' and login='$login'");
-            if (mysql_num_rows($result) > 0) {
-              $premio = 1;
-              while ($aula = mysql_fetch_assoc($result)) {
-                $horarioFormat = ($dia+2).''.$letra_turno.''.$hora;
-                if ($aula['horario_inviavel'] == $horarioFormat) {
-                  $this->getCromossomo()[$dia][$hora] = '<font color="red">'.$horario.'</font>';
-                  #$this->cromossomo[$dia][$hora] = '<font color="red">'.$horario.'</font>';
-                  $premio = 0;
-                  $iqual++;
-                  break 1;
-                }
-              }
-              if ($premio == 1) {
-                $this->getCromossomo()[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
-                #$this->cromossomo[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
-                $premioAux++;
-              }
-            }
-          }
+          if ($horario != '-') {
+	          $id_docente = id_docente(substr(strrchr($horario, '<br>'), 4));
+	          $diaMaisDois = $dia + 2;
+	          $horarioFormat = $diaMaisDois.''.$letra_turno.''.$hora;
+	          if ($id_docente != '') {
+	            $result = mysql_query("SELECT * FROM restricoes where id_docente='$id_docente' and login='$login'");
+	            if (mysql_num_rows($result) > 0) {
+	              $premio = 1;
+	              while ($aula = mysql_fetch_assoc($result)) {
+	                if ($aula['horario_inviavel'] == $horarioFormat) {
+	                  $this->getCromossomo()[$dia][$hora] = '<font color="red">'.$horario.'</font>';
+	                  #$this->cromossomo[$dia][$hora] = '<font color="red">'.$horario.'</font>';
+	                  $premio = 0;
+	                  break 1;
+	                }
+	              }
+	              if ($premio == 1) {
+	                $this->getCromossomo()[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
+	                #$this->cromossomo[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
+	              }
+	            }
+	            else {
+	            	$this->getCromossomo()[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
+	            }
+	          }
+	          else {
+	          	$this->getCromossomo()[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
+	          }
+	      }
           else {
             $this->getCromossomo()[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
             #$this->cromossomo[$dia][$hora] = '<font color="#03A5A9">'.$horario.'</font>';
-            $nada++;
           }
         }
       }
-      #echo 'iqual: '.$iqual.' nada: '.$nada.' premio: '.$premioAux.'<br>';
     }
     function mutacao() { # gera uma mutacao no cromossomo, sendo a chance de gerar essa mutacao é de 10%
       # realiza uma invercao entre duas posições no horario
-      if (rand(0,100) < 10) {
+      if (rand(0, 100) < 10) {
         $dia = rand(0, 4);
         $hora = rand(1, ((int)($this->numero_aulas() / 5)));
         $gene1 = $this->getCromossomo()[$dia][$hora];
@@ -217,7 +228,6 @@
     }
     #return $individuos[rand(0, 99)];
     return $individuos;
-    
   }
 
   function nova_geracao($populacao) {  # Gera uma nova população com as caracteristicas da primeira
@@ -227,20 +237,25 @@
         $lista = selecao($individuos);
         $tam_lista = count($lista);
         for ($i=0; $i < 100; $i++) { 
-          #$pai1 = selecao($individuos);
-          $pai1 = $lista[rand(0, $tam_lista - 1)];
-          #$pai2 = selecao($individuos);
-          $pai2 = $lista[rand(0, $tam_lista - 1)];
-          $count = 0;
-          while (($pai1 == $pai2) and ($count < 20)){
-            #$pai2 = selecao($individuos);
-            $pai2 = $lista[rand(0, $tam_lista - 1)];
-            $count++;
+          if ($i < 70) {
+	          #$pai1 = selecao($individuos);
+	          $pai1 = $lista[rand(0, $tam_lista - 1)];
+	          #$pai2 = selecao($individuos);
+	          $pai2 = $lista[rand(0, $tam_lista - 1)];
+	          $count = 0;
+	          while (($pai1 == $pai2) and ($count < 10)){
+	            #$pai2 = selecao($individuos);
+	            $pai2 = $lista[rand(0, $tam_lista - 1)];
+	            $count++;
+	          }
+	          $filho = $pai1->crossOver($pai2);
+	          $filho->mutacao();
+	          $filho->verificar_restricoes($turno);
+	          $nova_geracao[$turno][$turma][$i] = $filho;
           }
-          $filho = $pai1->crossOver($pai2);
-          $filho->mutacao();
-          $filho->verificar_restricoes($turno);
-          $nova_geracao[$turno][$turma][$i] = $filho;
+          else {
+          	$nova_geracao[$turno][$turma][$i] = $lista[rand(0, $tam_lista - 1)];
+          }
         }
       }
     }
@@ -253,11 +268,11 @@
       foreach ($turmas as $turma => $individuos) {
         $maior = 0;
         #$maior = $individuos[rand(0, count($individuos) - 1)]->getAvaliacao();
-        for ($i=0; $i < 100; $i++) { 
-        #foreach ($individuos as $individuo) {
-          if ($individuos[$i]->getAvaliacao() > $maior) {
-            $maior = $individuos[$i]->getAvaliacao();
-            $individuoAux = $individuos[$i];
+        #for ($i=0; $i < 100; $i++) { 
+        foreach ($individuos as $key => $individuo) {
+          if ($individuo->getAvaliacao() > $maior) {
+            $maior = $individuo->getAvaliacao();
+            $individuoAux = $individuo;
           }
         }
         $individuoAux->restricoes_final($turno);
@@ -272,33 +287,48 @@
 
 
   function nome_disciplina($id_disciplina) {  # Retorna nome da disciplina
-    $login = $_SESSION['login'];
-    $result = mysql_query("SELECT * FROM disciplinas where id_disciplina='$id_disciplina' and login='$login'");
-    $result = mysql_fetch_assoc($result);
-    if (isset($result['nome_disciplina'])) {
-      return $result['nome_disciplina'];
-    }
-    return $id_disciplina;
+    if ($id_disciplina != '-') {
+	    $login = $_SESSION['login'];
+	    $result = mysql_query("SELECT * FROM disciplinas where id_disciplina='$id_disciplina' and login='$login'");
+	    $result = mysql_fetch_assoc($result);
+	    if (isset($result['nome_disciplina'])) {
+	      return $result['nome_disciplina'];
+	    }
+	    return $id_disciplina;
+	}
+	else {
+		return $id_disciplina;
+	}
   }
 
   function nome_docente($id_docente) {    # Retorna nome do Docente
-    $login = $_SESSION['login'];
-    $result = mysql_query("SELECT * FROM docentes where id_docente='$id_docente' and login='$login'");
-    $result = mysql_fetch_assoc($result);
-    if (isset($result['nome_professor'])) {
-      return $result['nome_professor'];
-    }
-    return $id_docente;
+  	if ($id_docente != '') {
+	    $login = $_SESSION['login'];
+	    $result = mysql_query("SELECT * FROM docentes where id_docente='$id_docente' and login='$login'");
+	    $result = mysql_fetch_assoc($result);
+	    if (isset($result['nome_professor'])) {
+	      return $result['nome_professor'];
+	    }
+	    return $id_docente;
+	}
+	else {
+		return $id_docente;
+	}
   }
 
   function id_docente($nome_professor) {
-    $login = $_SESSION['login'];
-    $result = mysql_query("SELECT * FROM docentes where nome_professor='$nome_professor' and login='$login'");
-    $result = mysql_fetch_assoc($result);
-    if (isset($result['id_docente'])) {
-      return $result['id_docente'];
-    }
-    return '';
+  	if ($nome_professor != '') { 
+	    $login = $_SESSION['login'];
+	    $result = mysql_query("SELECT * FROM docentes where nome_professor='$nome_professor' and login='$login'");
+	    $result = mysql_fetch_assoc($result);
+	    if (isset($result['id_docente'])) {
+	      return $result['id_docente'];
+	    }
+	    return '';
+	}
+	else {
+		return $nome_professor;
+	}
   }
 
   function aulas_por_disciplina($disciplinas, $id_disciplina) {   # Retorna o numero de aulas de uma disciplina
@@ -401,7 +431,6 @@
     }
     $stringHorario[] = '</table>';
     $html = implode('', $stringHorario);
-    echo $html;
     return $html;
     
   }
@@ -425,6 +454,8 @@
 
         <?php 
 
+          $numeroDeGeracoes = 10;
+          ini_set('max_execution_time', $numeroDeGeracoes * 30);
           $count_turmas = 0;
           $_docentes = explode(';', $docentes);
 
@@ -449,7 +480,6 @@
             $count_turmas++;
           }
 
-          $numeroDeGeracoes = 10;
           for ($geracao=0; $geracao < $numeroDeGeracoes; $geracao++) { 
             $populacao = nova_geracao($populacao);
           }
@@ -482,22 +512,25 @@
                       </div>
                       <div class="panel-collapse collapse" id="collapse'.$count_turmas.'">
                         <div class="panel-body">';
-            echo 'Avaliação do Horário: <font size="4" color="red">'.$individuo->getAvaliacao().'</font>';
-            echo '<div class="pull-right">Taxa de Qualidade do Horário: <font size="4" color="red">'.$individuo->getQualidade().'%</font></div>';
 
-            $html = gerar_horario($individuo->getCromossomo());
+            #echo 'Avaliação do Horário: <font size="4" color="red">'.$individuo->getAvaliacao().'</font>';
+            #echo '<div class="pull-right">Taxa de Qualidade do Horário: <font size="4" color="red">'.$individuo->getQualidade().'%</font></div>';
+
+            $table = gerar_horario($individuo->getCromossomo(), $count_turmas);
+            echo $table;
 
             $turmaFormat = str_replace("º", "", $turma.' '.$turnos[$count_turmas]);
             $pdf = new PDF('L');
             $pdf->AddPage();
             $pdf->SetFont('Arial', '', 12);
-            $pdf->SetMargins(10,0,10);
+            $pdf->SetMargins(10, 0, 10);
             $pdf->Write(5, $turma.' '.$turnos[$count_turmas]);
-            $pdf->Cell(0,10,'',0,1);
-            $pdf->WriteHTML($html);
+            $pdf->Ln(5);
+            $pdf->WriteHTML($table);
             $pdf->Output('F', "./pdf_horarios/".$turmaFormat.".pdf", 1);
+            
             echo '<div class="pull-right"><a href="./pdf_horarios/'.$turmaFormat.'.pdf" download="'.$turma.' '.$turnos[$count_turmas].'.pdf"><img src="imagens/pdf.jpg"></a></div>';
-
+            
             echo '</div></div></div><br>';
             $count_turmas++;
           }
@@ -505,6 +538,6 @@
         ?>
 
       </div>
-    </form> 
+    </form>
   </div>
 </body>
